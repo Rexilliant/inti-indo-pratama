@@ -11,7 +11,7 @@
         .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
-        }
+        }       
     </style>
 
     {{-- hero banner (mobile + ipad aman) --}}
@@ -234,140 +234,8 @@
         </section>
     </div>
 
-    {{-- section faq (statis, lebar mengikuti max-w-screen-xl) --}}
-    <div class="w-full bg-[#EEFBF5] pb-10 md:pb-16">
+    {{-- faqs --}}
+    @include('faqs.faqs')
 
-        {{-- Section menggunakan max-w-screen-xl untuk konsistensi lebar di desktop --}}
-        <section class="mx-auto max-w-screen-xl p-4 md:p-5">
-
-            {{-- header faq --}}
-            <div class="text-center mb-10 sm:mb-14">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                    Kamu Punya Pertanyaan?
-                </h2>
-                <p class="text-sm sm:text-base font-medium text-[#444545]">
-                    Sambil mikir-mikir, mungkin kamu juga perlu membaca beberapa<br class="hidden sm:block">
-                    FAQ seputar BHOS Teknologi?
-                </p>
-            </div>
-
-            {{-- FAQ Container sekarang menggunakan lebar penuh section --}}
-            <div class="space-y-4">
-
-                {{-- faq item --}}
-                <details
-                    class="group bg-white border border-gray-200 rounded-xl p-2 transition-all duration-300 open:shadow-lg">
-                    <summary
-                        class="flex items-center justify-between font-semibold text-gray-800 cursor-pointer p-4 select-none">
-                        <span>Apa Itu BHOS Teknologi</span>
-                        <svg class="w-5 h-5 text-[#EA580C] transition-transform group-open:rotate-180" fill="currentColor"
-                            viewBox="0 0 20 20">
-                            <path
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                        </svg>
-                    </summary>
-                    <div class="px-4 pb-4 text-sm sm:text-base text-gray-600 leading-relaxed">
-                        BHOS Teknologi adalah perusahaan inovasi di bidang pertanian yang berfokus pada teknologi nano untuk meningkatkan produktivitas hasil panen secara maksimal.
-                    </div>
-                </details>
-
-                <details
-                    class="group bg-white border border-gray-200 rounded-xl p-2 transition-all duration-300 open:shadow-lg">
-                    <summary
-                        class="flex items-center justify-between font-semibold text-gray-800 cursor-pointer p-4 select-none">
-                        <span>Apa yang membuat BHOS Teknologi berbeda?</span>
-                        <svg class="w-5 h-5 text-[#EA580C] transition-transform group-open:rotate-180" fill="currentColor"
-                            viewBox="0 0 20 20">
-                            <path
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                        </svg>
-                    </summary>
-                    <div class="px-4 pb-4 text-sm sm:text-base text-gray-600 leading-relaxed">
-                        Kami menggabungkan riset mendalam teknologi nano dengan kebutuhan praktis petani di lapangan,
-                        memastikan efisiensi penyerapan nutrisi yang jauh lebih tinggi dibanding pupuk konvensional.
-                    </div>
-                </details>
-
-                <details
-                    class="group bg-white border border-gray-200 rounded-xl p-2 transition-all duration-300 open:shadow-lg">
-                    <summary
-                        class="flex items-center justify-between font-semibold text-gray-800 cursor-pointer p-4 select-none">
-                        <span>Bagaimana cara memesan produk BHOS Teknologi</span>
-                        <svg class="w-5 h-5 text-[#EA580C] transition-transform group-open:rotate-180" fill="currentColor"
-                            viewBox="0 0 20 20">
-                            <path
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                        </svg>
-                    </summary>
-                    <div class="px-4 pb-4 text-sm sm:text-base text-gray-600 leading-relaxed">
-                        Anda dapat memesan melalui formulir kontak di website kami, menghubungi layanan pelanggan via
-                        WhatsApp, atau melalui distributor resmi yang tersebar di wilayah Anda.
-                    </div>
-                </details>
-
-            </div>
-        </section>
-    </div>
-
-    {{-- section testimoni --}}
-    <div class="w-full bg-[#EEFBF5] pb-10 md:pb-16 overflow-hidden">
-
-        <section class="mx-auto max-w-screen-xl p-4 md:p-5 mb-10">
-            <div class="text-center">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                    Apa Kata Mereka tentang BHOS Teknologi
-                </h2>
-                <p class="text-sm sm:text-base font-medium text-[#444545]">
-                    Langkah Nyata Menuju Pertanian Lebih Produktif
-                </p>
-            </div>
-        </section>
-
-        {{-- Container Animasi --}}
-        <div class="flex overflow-hidden relative">
-            <div class="flex animate-marquee gap-6 px-4">
-                {{-- Kita looping card-nya --}}
-                @for ($i = 0; $i < 6; $i++)
-                    <div
-                        class="flex-none w-[300px] sm:w-[400px] bg-white border border-gray-200 rounded-3xl p-6 shadow-sm">
-                        <div class="flex items-center gap-4 mb-4">
-                            <img src="https://ui-avatars.com/api/?name=Bambang+Pratama&background=random" alt="Avatar"
-                                class="w-14 h-14 rounded-full">
-                            <div>
-                                <h4 class="font-bold text-[#047857]">Bambang Pratama Putra</h4>
-                                <p class="text-sm text-gray-500">Pekanbaru</p>
-                            </div>
-                        </div>
-                        <p class="text-sm sm:text-base text-[#444545] leading-relaxed">
-                            Sejak menggunakan pupuk dari BHOS Teknologi, hasil panen kami meningkat dan kualitas tanah tetap
-                            terjaga. Tanaman tumbuh lebih sehat dan merata.
-                        </p>
-                    </div>
-                @endfor
-            </div>
-        </div>
-    </div>
-
-    {{-- CSS untuk Animasi --}}
-    <style>
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .animate-marquee {
-            display: flex;
-            animation: marquee 20s linear infinite;
-        }
-
-        /* Jeda sedikit saat hover */
-        .animate-marquee:hover {
-            animation-play-state: paused;
-        }
-    </style>
+    @include('testimoni.index')
 @endsection

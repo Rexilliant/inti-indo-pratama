@@ -22,6 +22,7 @@
             <div class="loader"></div>
         </div>
 
+        @include('layout.footer')
     </section>
     @yield('addJs')
 </body>
