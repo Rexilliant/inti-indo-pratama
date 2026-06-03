@@ -26,7 +26,7 @@
                 <div
                     class="w-full mb-8 sm:mb-10 overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl shadow-sm sm:shadow-md border border-gray-200 bg-gray-100">
                     {{-- Pastikan asset disesuaikan dengan direktori gambar Anda --}}
-                    <img src="{{ asset('images/artikel-detail-hero.jpg') }}" alt="Pupuk Nano BHOS di Lahan Kering"
+                    <img src="{{ asset('assets_img/bg-news.png') }}" alt="Pupuk Nano BHOS di Lahan Kering"
                         class="w-full h-auto object-cover aspect-video hover:scale-[1.02] transition-transform duration-500">
                 </div>
 

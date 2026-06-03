@@ -41,8 +41,7 @@
             @for ($i = 0; $i < 6; $i++)
                 <div class="flex-none w-[300px] sm:w-[400px] bg-white border border-gray-200 rounded-3xl p-6 shadow-sm">
                     <div class="flex items-center gap-4 mb-4">
-                        <img src="https://ui-avatars.com/api/?name=Bambang+Pratama&background=random" alt="Avatar"
-                            class="w-14 h-14 rounded-full">
+                        <img src="{{ asset('assets_img/factory.png') }}" alt="Avatar" class="w-14 h-14 rounded-full">
                         <div>
                             <h4 class="font-bold text-[#047857]">Bambang Pratama Putra</h4>
                             <p class="text-sm text-gray-500">Pekanbaru</p>

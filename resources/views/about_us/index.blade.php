@@ -2,8 +2,8 @@
 
 @section('content')
     {{-- hero banner (mobile + ipad aman) --}}
-    <div class="relative flex min-h-[500px] w-full items-center bg-gray-900 bg-cover bg-center bg-no-repeat md:min-h-[600px]"
-        style="background-image: url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=2069&auto=format&fit=crop');">
+    <div class="relative flex min-h-[500px] w-full items-center bg-gray-900 bg-cover bg-left bg-no-repeat md:min-h-[700px]"
+        style="background-image: url('{{ asset('assets_img/bg-about-us.png') }}');">
 
         {{-- overlay gelap --}}
         <div class="absolute inset-0 bg-black/20"></div>
@@ -65,8 +65,8 @@
 
                 {{-- image right --}}
                 <div class="w-full">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
-                        alt="Fasilitas Pabrik"
+                    <img src="{{ asset('assets_img/item-1.jpg') }}"
+                        alt="Tanaman Sehat"
                         class="h-auto w-full rounded-[1.5rem] sm:rounded-[2rem] object-cover shadow-xl">
                 </div>
 
@@ -157,12 +157,8 @@
                 {{-- Card 1: Inovasi --}}
                 <div
                     class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-5 xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
-                    <div class="w-16 h-16 mb-5 text-[#047857]">
-                        <svg class="w-full h-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.829 1.58-2.083a4.5 4.5 0 10-7.66 0c.922.254 1.58 1.1 1.58 2.083v.192" />
-                        </svg>
+                    <div class="w-20 h-20 mb-5 text-[#047857]">
+                        <img src="{{ asset('assets_img/inovasi.png') }}" alt="Inovasi">
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Inovasi</h3>
                     <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
@@ -173,12 +169,8 @@
                 {{-- Card 2: Integritas --}}
                 <div
                     class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-5 xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
-                    <div class="w-16 h-16 mb-5 text-[#047857]">
-                        <svg class="w-full h-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                        </svg>
+                    <div class="w-20 h-20 mb-5 text-[#047857]">
+                        <img src="{{ asset('assets_img/integritas.png') }}" alt="Integritas">
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Integritas</h3>
                     <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
@@ -189,12 +181,8 @@
                 {{-- Card 3: Kualitas --}}
                 <div
                     class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-5 xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
-                    <div class="w-16 h-16 mb-5 text-[#047857]">
-                        <svg class="w-full h-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                    <div class="w-20 h-20 mb-5 text-[#047857]">
+                         <img src="{{ asset('assets_img/kualitas.png') }}" alt="Kualitas">
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Kualitas</h3>
                     <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
@@ -205,12 +193,8 @@
                 {{-- Card 4: Kolaborasi --}}
                 <div
                     class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-5 xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
-                    <div class="w-16 h-16 mb-5 text-[#047857]">
-                        <svg class="w-full h-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
-                        </svg>
+                    <div class="w-20 h-20 mb-5 text-[#047857]">
+                         <img src="{{ asset('assets_img/kolaborasi.png') }}" alt="kolaborasi">
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Kolaborasi</h3>
                     <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
@@ -221,12 +205,8 @@
                 {{-- Card 5: Keberlanjutan --}}
                 <div
                     class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-5 xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
-                    <div class="w-16 h-16 mb-5 text-[#047857]">
-                        <svg class="w-full h-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-                        </svg>
+                    <div class="w-20 h-20 mb-5 text-[#047857]">
+                         <img src="{{ asset('assets_img/keberlanjutan.png') }}" alt="keberlanjutan">
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Keberlanjutan</h3>
                     <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
@@ -259,7 +239,7 @@
                 <div
                     class="shrink-0 w-[75%] sm:w-[45%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl sm:rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col overflow-hidden">
                     <div class="w-full aspect-[4/3] bg-gray-100 relative overflow-hidden group">
-                        <img src="{{ asset('images/keunggulan-1.jpg') }}" alt="Riset dan Pengembangan"
+                        <img src="{{ asset('assets_img/riset-dan-pengembangan.jpg') }}" alt="Riset dan Pengembangan"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-5 sm:p-6 flex flex-col flex-grow">
@@ -274,7 +254,7 @@
                 <div
                     class="shrink-0 w-[75%] sm:w-[45%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl sm:rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col overflow-hidden">
                     <div class="w-full aspect-[4/3] bg-gray-100 relative overflow-hidden group">
-                        <img src="{{ asset('images/keunggulan-2.jpg') }}" alt="Formula Presisi"
+                        <img src="{{ asset('assets_img/formula-presisi.jpg') }}" alt="Formula Presisi"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-5 sm:p-6 flex flex-col flex-grow">
@@ -290,7 +270,7 @@
                 <div
                     class="shrink-0 w-[75%] sm:w-[45%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl sm:rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col overflow-hidden">
                     <div class="w-full aspect-[4/3] bg-gray-100 relative overflow-hidden group">
-                        <img src="{{ asset('images/keunggulan-3.jpg') }}" alt="Uji Kualitas Ketat"
+                        <img src="{{ asset('assets_img/uji-kualitas.jpg') }}" alt="Uji Kualitas Ketat"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-5 sm:p-6 flex flex-col flex-grow">
@@ -305,7 +285,7 @@
                 <div
                     class="shrink-0 w-[75%] sm:w-[45%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl sm:rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col overflow-hidden">
                     <div class="w-full aspect-[4/3] bg-gray-100 relative overflow-hidden group">
-                        <img src="{{ asset('images/keunggulan-4.jpg') }}" alt="Distribusi Produk"
+                        <img src="{{ asset('assets_img/distribusi-produk.jpg') }}" alt="Distribusi Produk"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-5 sm:p-6 flex flex-col flex-grow">

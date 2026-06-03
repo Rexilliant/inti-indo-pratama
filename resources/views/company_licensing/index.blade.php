@@ -1,60 +1,58 @@
 @extends('layout.master')
 
 @section('content')
-
     {{-- Section Hero: Perizinan & Legalitas Usaha --}}
     {{-- Menggunakan warna latar hijau sangat lembut (mirip dengan desain) --}}
-    <div class="w-full bg-[#EBFBF3] py-16 md:py-24 relative overflow-hidden">
-        
+    <div class="relative flex min-h-[500px] w-full items-center bg-gray-900 bg-cover bg-left lg:bg-center bg-no-repeat md:min-h-[700px] object-right overflow-hidden"
+        style="background-image: url('{{ asset('assets_img/bg-licensing.png') }}');" aria-label="petani modern">
+
         {{-- Elemen Dekorasi Background (Opsional, untuk meniru lengkungan/blob abstrak di gambar) --}}
-        <div class="absolute top-0 left-0 w-64 h-64 bg-[#D1F4E0] rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#D1F4E0] rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+        <div
+            class="absolute top-0 left-0 w-64 h-64 bg-[#D1F4E0] rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 right-0 w-96 h-96 bg-[#D1F4E0] rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform translate-x-1/3 translate-y-1/3 pointer-events-none">
+        </div>
 
         <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-                
+
                 {{-- Kolom Kiri: Konten Teks & Badge --}}
                 <div class="flex flex-col justify-center text-left">
-                    
+
                     {{-- Judul Utama --}}
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#047857] mb-3 lg:mb-4 tracking-tight leading-tight">
+                    <h2
+                        class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#047857] mb-3 lg:mb-4 tracking-tight leading-tight">
                         Perizinan & Legalitas Usaha
                     </h2>
-                    
+
                     {{-- Subjudul --}}
                     <p class="text-sm sm:text-base lg:text-lg font-bold text-[#047857] mb-5 lg:mb-6">
                         Komitmen kami Terhadap Transparansi dan Kepercayaan
                     </p>
-                    
+
                     {{-- Paragraf Deskripsi --}}
                     <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-8 lg:mb-10">
-                        PT Grace Indo Pratama beroperasi secara resmi dan telah dilengkapi dengan berbagai dokumen perizinan sesuai dengan ketentuan yang berlaku. Kami berkomitmen untuk menjaga transparansi serta memberikan rasa aman dan kepercayaan kepada seluruh mitra dan pelanggan.
+                        PT Grace Indo Pratama beroperasi secara resmi dan telah dilengkapi dengan berbagai dokumen perizinan
+                        sesuai dengan ketentuan yang berlaku. Kami berkomitmen untuk menjaga transparansi serta memberikan
+                        rasa aman dan kepercayaan kepada seluruh mitra dan pelanggan.
                     </p>
 
                     {{-- Badge / Info Card --}}
-                    <div class="inline-flex items-center gap-4 bg-white border border-gray-200 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] max-w-lg transition-transform hover:-translate-y-1 duration-300">
+                    <div
+                        class="inline-flex items-center gap-4 bg-white border border-gray-200 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] max-w-lg transition-transform hover:-translate-y-1 duration-300">
                         {{-- Ikon Shield (Bisa diganti dengan SVG asli dari desainer) --}}
-                        <div class="shrink-0 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#F4FDF9] rounded-full border border-[#047857]/20">
-                            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-[#047857]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M12 1.992a1 1 0 0 1 .726.315l8.6 9.462A1 1 0 0 1 21.1 13h-2.182l-2.073 6.91A2 2 0 0 1 14.93 21.5H9.07a2 2 0 0 1-1.914-1.59L5.082 13H2.9a1 1 0 0 1-.225-1.231 1 1 0 0 1 .533-.509l8.6-4.73A1 1 0 0 1 12 1.992Zm-2.316 11.23a1 1 0 0 0-1.368-1.444l-2.046 1.939a1 1 0 0 0 0 1.45l4.545 4.307a1 1 0 0 0 1.368 0l7.273-6.897a1 1 0 1 0-1.368-1.45l-6.59 6.25-3.814-3.614Z" clip-rule="evenodd"/>
-                            </svg>
+                        <div
+                            class="shrink-0 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#F4FDF9] rounded-full border border-[#047857]/20">
+                            <img src="{{ asset('assets_img/shield.png') }}" alt="Trusted">
                         </div>
                         {{-- Teks Badge --}}
                         <p class="text-sm sm:text-base font-bold text-[#047857] leading-snug">
-                            Seluruh Dokumen Dibawah Ini adalah Asli dan Sah Sesuai dengan Peraturan yang Berlaku di Indonesia
+                            Seluruh Dokumen Dibawah Ini adalah Asli dan Sah Sesuai dengan Peraturan yang Berlaku di
+                            Indonesia
                         </p>
                     </div>
 
-                </div>
-
-                {{-- Kolom Kanan: Gambar Dokumen --}}
-                <div class="relative w-full flex justify-center lg:justify-end mt-8 lg:mt-0">
-                    {{-- 
-                        Pastikan untuk mengganti 'images/dokumen-hero.png' dengan gambar asli Anda. 
-                        Gambar ini harus berupa PNG transparan atau JPG yang sudah rapi sesuai desain.
-                    --}}
-                    <img src="{{ asset('images/dokumen-hero.png') }}" alt="Ilustrasi Perizinan dan Legalitas" 
-                        class="w-[85%] sm:w-[70%] lg:w-full max-w-lg h-auto object-contain drop-shadow-xl transition-transform hover:scale-105 duration-500">
                 </div>
 
             </div>
@@ -97,9 +95,9 @@
                         <div class="flex items-start gap-4 mb-8">
                             {{-- Thumbnail Dokumen --}}
                             <div
-                                class="w-20 sm:w-24 shrink-0 border border-gray-200 p-1 rounded-lg bg-gray-50 shadow-inner">
+                                class="w-20 sm:w-24 shrink-0 items-center">
                                 {{-- Ganti dengan path gambar dokumen asli --}}
-                                <img src="{{ asset('images/dokumen-nib.png') }}" alt="Thumbnail NIB"
+                                <img src="{{ asset('assets_img/licensing.png') }}" alt="Thumbnail NIB"
                                     class="w-full h-auto object-contain">
                             </div>
 
@@ -111,12 +109,7 @@
 
                                 {{-- Badge Status Verifikasi --}}
                                 <div class="flex items-center gap-1.5 text-[#047857] font-bold text-sm">
-                                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        fill="currentColor" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd"
-                                            d="M12 2c-.791 0-1.55.314-2.11.874l-.893.893a.985.985 0 0 1-.696.288H7.04A2.984 2.984 0 0 0 4.055 7.04v1.262a.986.986 0 0 1-.288.696l-.893.893a2.984 2.984 0 0 0 0 4.22l.893.893a.985.985 0 0 1 .288.696v1.262a2.984 2.984 0 0 0 2.984 2.984h1.262c.261 0 .512.104.696.288l.893.893a2.984 2.984 0 0 0 4.22 0l.893-.893a.985.985 0 0 1 .696-.288h1.262a2.984 2.984 0 0 0 2.984-2.984V15.7c0-.261.104-.512.288-.696l.893-.893a2.984 2.984 0 0 0 0-4.22l-.893-.893a.985.985 0 0 1-.288-.696V7.04a2.984 2.984 0 0 0-2.984-2.984h-1.262a.985.985 0 0 1-.696-.288l-.893-.893A2.984 2.984 0 0 0 12 2Zm3.683 7.73a1 1 0 1 0-1.414-1.413l-4.253 4.253-1.277-1.277a1 1 0 0 0-1.415 1.414l1.985 1.984a1 1 0 0 0 1.414 0l4.96-4.96Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
+                                    <img src="{{ asset('assets_img/trust.png') }}" alt="Trusted" class="w-10 h-10">
                                     Aktif & Terverifikasi
                                 </div>
                             </div>
@@ -170,13 +163,7 @@
                     <div
                         class="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-[#047857]/40 bg-[#F4FDF9]">
                         {{-- Menggunakan SVG Shield Check mirip desain, warnanya di-set ke hijau #047857 --}}
-                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-[#047857]" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd"
-                                d="M12 1.992a1 1 0 0 1 .726.315l8.6 9.462A1 1 0 0 1 21.1 13h-2.182l-2.073 6.91A2 2 0 0 1 14.93 21.5H9.07a2 2 0 0 1-1.914-1.59L5.082 13H2.9a1 1 0 0 1-.225-1.231 1 1 0 0 1 .533-.509l8.6-4.73A1 1 0 0 1 12 1.992Zm-2.316 11.23a1 1 0 0 0-1.368-1.444l-2.046 1.939a1 1 0 0 0 0 1.45l4.545 4.307a1 1 0 0 0 1.368 0l7.273-6.897a1 1 0 1 0-1.368-1.45l-6.59 6.25-3.814-3.614Z"
-                                clip-rule="evenodd" />
-                            {{-- Catatan: Jika Anda memiliki SVG asli dari desainer, Anda bisa mengganti tag <svg> ini --}}
-                        </svg>
+                        <img src="{{ asset('assets_img/shield.png') }}" alt="Trusted">
                     </div>
                 </div>
 
@@ -193,12 +180,12 @@
                 </div>
 
                 {{-- Bagian Kanan: Gambar Maskot Pekerja --}}
-                <div class="shrink-0 flex items-end justify-center md:justify-end mt-4 md:mt-0 md:-my-10 lg:-my-12">
+                <div class="shrink-0 flex justify-center mt-4 md:mt-0 md:-my-10 lg:-my-12">
                     {{-- 
                         Ganti dengan path maskot Anda. 
                         Tinggi gambar dimaksimalkan, tapi lebarnya dibatasi agar tidak merusak layout flex 
                     --}}
-                    <img src="{{ asset('images/maskot-pekerja.png') }}" alt="Maskot Pekerja Kepercayaan"
+                    <img src="{{ asset('assets_img/maskot-worker.png') }}" alt="Maskot Pekerja Kepercayaan"
                         class="w-32 sm:w-40 lg:w-48 h-auto object-contain drop-shadow-md transition-transform hover:scale-105 duration-300">
                 </div>
 

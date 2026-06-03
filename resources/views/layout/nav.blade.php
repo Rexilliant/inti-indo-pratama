@@ -17,27 +17,70 @@
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 <ul
                     class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
+
+                    {{-- Menu Home --}}
                     <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-white bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0"
-                            aria-current="page">Home</a>
+                        <a href="{{ route('landing_page.index') }}"
+                            class="block py-2 px-3 rounded md:p-0 {{ request()->routeIs('landing_page.index') ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}"
+                            {!! request()->routeIs('landing_page.index') ? 'aria-current="page"' : '' !!}>
+                            Home
+                        </a>
                     </li>
+
+                    {{-- Menu About Us --}}
                     <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">About</a>
+                        <a href="{{ route('about_us.index') }}"
+                            class="block py-2 px-3 rounded md:p-0 {{ request()->routeIs('about_us.index') ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}"
+                            {!! request()->routeIs('about_us.index') ? 'aria-current="page"' : '' !!}>
+                            About Us
+                        </a>
                     </li>
+
+                    {{-- Menu Our Product --}}
                     <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Services</a>
+                        <a href="{{ route('our_product.index') }}"
+                            class="block py-2 px-3 rounded md:p-0 {{ request()->routeIs('our_product.*') ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}"
+                            {!! request()->routeIs('our_product.*') ? 'aria-current="page"' : '' !!}>
+                            Our Product
+                        </a>
                     </li>
+
+                    {{-- Menu Licensing --}}
                     <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Pricing</a>
+                        <a href="{{ route('company_licensing.index') }}"
+                            class="block py-2 px-3 rounded md:p-0 {{ request()->routeIs('company_licensing.index') ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}"
+                            {!! request()->routeIs('company_licensing.index') ? 'aria-current="page"' : '' !!}>
+                            Licensing
+                        </a>
                     </li>
+
+                    {{-- Menu News --}}
                     <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Contact</a>
+                        <a href="{{ route('news.index') }}"
+                            class="block py-2 px-3 rounded md:p-0 {{ request()->routeIs('news.*') ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}"
+                            {!! request()->routeIs('news.*') ? 'aria-current="page"' : '' !!}>
+                            News
+                        </a>
                     </li>
+
+                    {{-- Menu Feedback --}}
+                    <li>
+                        <a href="{{ route('feedback.index') }}"
+                            class="block py-2 px-3 rounded md:p-0 {{ request()->routeIs('feedback.index') ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}"
+                            {!! request()->routeIs('feedback.index') ? 'aria-current="page"' : '' !!}>
+                            Feedback
+                        </a>
+                    </li>
+
+                    {{-- Menu FaQs --}}
+                    <li>
+                        <a href="{{ route('faqs.index') }}"
+                            class="block py-2 px-3 rounded md:p-0 {{ request()->routeIs('faqs.index') ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}"
+                            {!! request()->routeIs('faqs.index') ? 'aria-current="page"' : '' !!}>
+                            FaQs
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>

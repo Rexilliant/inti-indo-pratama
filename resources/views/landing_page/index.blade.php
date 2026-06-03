@@ -11,12 +11,13 @@
         .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
-        }       
+        }
     </style>
 
     {{-- hero banner (mobile + ipad aman) --}}
-    <div class="relative flex min-h-[500px] w-full items-center bg-gray-900 bg-cover bg-center bg-no-repeat md:min-h-[600px]"
-        style="background-image: url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=2069&auto=format&fit=crop');">
+    <div class="relative flex min-h-[500px] w-full items-center bg-gray-900 bg-cover bg-center bg-no-repeat md:min-h-[700px] object-right"
+        style="background-image: url('{{ asset('assets_img/hero.png') }}');" aria-label="petani modern">
+
 
         {{-- overlay gelap --}}
         <div class="absolute inset-0 bg-black/20"></div>
@@ -25,7 +26,7 @@
 
             {{-- title --}}
             <h1
-                class="max-w-4xl text-4xl font-black leading-tight drop-shadow-[4px_4px_2px_rgba(0,0,0,0.06)] sm:text-5xl lg:text-6xl">
+                class="max-w-4xl text-3xl font-black leading-tight drop-shadow-[4px_4px_2px_rgba(0,0,0,0.06)] sm:text-5xl lg:text-6xl">
                 <span class="text-[#FAFAFA]">Revolusi</span>
                 <span
                     class="bg-gradient-to-r from-[#046910] from-0% via-[#08CF1F] via-38% to-[#08CF1F] bg-clip-text text-transparent">
@@ -39,7 +40,7 @@
             </h1>
 
             {{-- subtitle --}}
-            <p class="mt-4 sm:mt-5 max-w-4xl text-base sm:text-lg md:text-xl font-extrabold text-[#FAFAFA] leading-relaxed">
+            <p class="mt-4 sm:mt-5 max-w-4xl text-[14px] sm:text-lg md:text-xl font-extrabold text-[#FAFAFA] leading-relaxed">
                 Teknologi nano terbaru yang meningkatkan penyerapan nutrisi secara signifikan, membantu tanaman tumbuh lebih
                 sehat, lebih cepat, dan lebih produktif.
             </p>
@@ -87,9 +88,9 @@
 
                 {{-- image right --}}
                 <div class="w-full">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
+                    <img src="{{ asset('assets_img/factory.png') }}"
                         alt="Fasilitas Pabrik"
-                        class="h-auto w-full rounded-[1.5rem] sm:rounded-[2rem] object-cover shadow-xl">
+                        class="h-auto w-full rounded-[1.5rem] sm:rounded-[2rem] object-cover shadow-xl hidden md:block">
                 </div>
 
             </div>

@@ -2,8 +2,8 @@
 
 @section('content')
     {{-- hero banner (mobile + ipad aman) --}}
-    <div class="relative flex min-h-[500px] w-full items-center bg-gray-900 bg-cover bg-center bg-no-repeat md:min-h-[600px]"
-        style="background-image: url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=2069&auto=format&fit=crop');">
+    <div class="relative flex min-h-[500px] w-full items-center bg-gray-900 bg-cover bg-left bg-no-repeat md:min-h-[600px]"
+        style="background-image: url('{{ asset('assets_img/bg-news.png') }}');">
 
         {{-- overlay gelap --}}
         <div class="absolute inset-0 bg-black/20"></div>
@@ -89,7 +89,7 @@
 
                         {{-- Thumbnail Artikel --}}
                         <a href="#" class="block w-full aspect-[16/9] bg-gray-100 relative overflow-hidden group">
-                            <img src="{{ asset('images/artikel-daun.jpg') }}" alt="Daun Jagung"
+                            <img src="{{ asset('assets_img/bg-news.png') }}" alt="Daun Jagung"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </a>
 
