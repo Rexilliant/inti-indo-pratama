@@ -21,7 +21,7 @@
 </style>
 
 {{-- section testimoni --}}
-<div class="w-full bg-[#EEFBF5] pb-10 md:pb-16 overflow-hidden">
+<div class="w-full bg-[#ECFDF5] pb-10 lg:pb-20 overflow-hidden">
 
     <section class="mx-auto max-w-screen-xl p-4 md:p-5 mb-10">
         <div class="text-center">

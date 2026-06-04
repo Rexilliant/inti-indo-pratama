@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Section Detail Artikel --}}
-    <div class="w-full bg-[#F4FDF9] py-8 sm:py-12 md:py-20 min-h-screen">
+    <div class="w-full bg-[#ECFDF5]  py-15 md:py-20 min-h-screen">
         <section class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-screen-xl lg:p-4 lg:p-5 lg:w-full">            
             <article>
 

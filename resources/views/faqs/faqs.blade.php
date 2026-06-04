@@ -1,5 +1,5 @@
     {{-- section faq (statis, lebar mengikuti max-w-screen-xl) --}}
-    <div class="w-full bg-[#EEFBF5] pt-10 md:pb-16">
+    <div class="w-full bg-[#ECFDF5] pb-10 lg:pb-20">
 
         {{-- Section menggunakan max-w-screen-xl untuk konsistensi lebar di desktop --}}
         <section class="mx-auto max-w-screen-xl p-4 md:p-5">

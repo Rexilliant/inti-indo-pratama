@@ -8,7 +8,7 @@
         {{-- overlay gelap --}}
         <div class="absolute inset-0 bg-black/20"></div>
 
-        <section class="mx-auto max-w-screen-xl p-4 md:p-5 relative z-10 w-full">
+        <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 relative z-10 w-full">
 
             {{-- title --}}
             <h1
@@ -36,9 +36,9 @@
     </div>
 
     {{-- tentang kami (mobile + ipad aman) --}}
-    <div class="w-full bg-[#EEFBF5] py-10 md:py-16">
+    <div class="w-full bg-[#ECFDF5] py-10 lg:py-20">
 
-        <section class="mx-auto max-w-screen-xl p-4 md:p-5">
+        <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
 
                 {{-- content left --}}
@@ -65,9 +65,8 @@
 
                 {{-- image right --}}
                 <div class="w-full">
-                    <img src="{{ asset('assets_img/item-1.jpg') }}"
-                        alt="Tanaman Sehat"
-                        class="h-auto w-full rounded-[1.5rem] sm:rounded-[2rem] object-cover shadow-xl">
+                    <img src="{{ asset('assets_img/item-1.jpg') }}" alt="Tanaman Sehat"
+                        class="h-auto w-full rounded-[1.5rem] sm:rounded-[2rem] object-cover shadow-xl hidden lg:block">
                 </div>
 
             </div>
@@ -75,7 +74,7 @@
     </div>
 
     {{-- Section Visi & Misi --}}
-    <div class="w-full bg-[#EBFBF3] py-16 md:py-24">
+    <div class="w-full bg-[#ECFDF5] pb-16 lg:pb-30">
         <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
 
             {{-- Grid Container (1 Kolom di Mobile, 2 Kolom di Desktop) --}}
@@ -137,7 +136,7 @@
     </div>
 
     {{-- Keunggulan Teknologi --}}
-    <div class="w-full bg-[#F4FDF9] py-16 md:py-24 overflow-hidden">
+    <div class="w-full bg-[#ECFDF5] pb-16 lg:pb-30 overflow-hidden">
         <section class="mx-auto max-w-screen-xl px-0 lg:px-8">
 
             {{-- Header Title --}}
@@ -156,7 +155,7 @@
 
                 {{-- Card 1: Inovasi --}}
                 <div
-                    class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-5 xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
+                    class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
                     <div class="w-20 h-20 mb-5 text-[#047857]">
                         <img src="{{ asset('assets_img/inovasi.png') }}" alt="Inovasi">
                     </div>
@@ -168,7 +167,7 @@
 
                 {{-- Card 2: Integritas --}}
                 <div
-                    class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-5 xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
+                    class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
                     <div class="w-20 h-20 mb-5 text-[#047857]">
                         <img src="{{ asset('assets_img/integritas.png') }}" alt="Integritas">
                     </div>
@@ -180,9 +179,9 @@
 
                 {{-- Card 3: Kualitas --}}
                 <div
-                    class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-5 xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
+                    class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
                     <div class="w-20 h-20 mb-5 text-[#047857]">
-                         <img src="{{ asset('assets_img/kualitas.png') }}" alt="Kualitas">
+                        <img src="{{ asset('assets_img/kualitas.png') }}" alt="Kualitas">
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Kualitas</h3>
                     <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
@@ -192,9 +191,9 @@
 
                 {{-- Card 4: Kolaborasi --}}
                 <div
-                    class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-5 xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
+                    class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
                     <div class="w-20 h-20 mb-5 text-[#047857]">
-                         <img src="{{ asset('assets_img/kolaborasi.png') }}" alt="kolaborasi">
+                        <img src="{{ asset('assets_img/kolaborasi.png') }}" alt="kolaborasi">
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Kolaborasi</h3>
                     <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
@@ -204,9 +203,9 @@
 
                 {{-- Card 5: Keberlanjutan --}}
                 <div
-                    class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-5 xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
+                    class="shrink-0 w-[75%] sm:w-[40%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center">
                     <div class="w-20 h-20 mb-5 text-[#047857]">
-                         <img src="{{ asset('assets_img/keberlanjutan.png') }}" alt="keberlanjutan">
+                        <img src="{{ asset('assets_img/keberlanjutan.png') }}" alt="keberlanjutan">
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Keberlanjutan</h3>
                     <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
@@ -218,7 +217,7 @@
         </section>
     </div>
 
-    <div class="w-full bg-white py-16 md:py-24 overflow-hidden">
+    <div class="w-full bg-[#ECFDF5] pb-16 lg:pb-30 overflow-hidden">
         <section class="mx-auto max-w-screen-xl px-0 lg:px-8">
 
             {{-- Header Title --}}
@@ -242,7 +241,7 @@
                         <img src="{{ asset('assets_img/riset-dan-pengembangan.jpg') }}" alt="Riset dan Pengembangan"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-grow">
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
                         <h3 class="text-lg font-bold text-gray-900 mb-2">Riset dan Pengembangan</h3>
                         <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
                             Riset mendalam untuk menemukan formula nano terbaik yang efektif dan aman bagi tanaman
@@ -257,7 +256,7 @@
                         <img src="{{ asset('assets_img/formula-presisi.jpg') }}" alt="Formula Presisi"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-grow">
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
                         <h3 class="text-lg font-bold text-gray-900 mb-2">Formula Presisi</h3>
                         <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
                             Teknologi nano memastikan ukuran partikel ultra kecil untuk penyerapan nutrisi yang lebih
@@ -273,7 +272,7 @@
                         <img src="{{ asset('assets_img/uji-kualitas.jpg') }}" alt="Uji Kualitas Ketat"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-grow">
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
                         <h3 class="text-lg font-bold text-gray-900 mb-2">Uji Kualitas Ketat</h3>
                         <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
                             Pengujian berlapis di laboratorium dan lapangan untuk memastikan kualitas dan efektivitas
@@ -288,7 +287,7 @@
                         <img src="{{ asset('assets_img/distribusi-produk.jpg') }}" alt="Distribusi Produk"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-grow">
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
                         <h3 class="text-lg font-bold text-gray-900 mb-2">Distribusi Produk</h3>
                         <p class="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
                             Produk sampai ke petani dengan pelayanan terbaik dan pendampingan berkelanjutan
@@ -301,7 +300,7 @@
     </div>
 
     {{-- Perjalanan Kami --}}
-    <div class="w-full bg-[#EBFBF3] py-16 md:py-24 overflow-hidden">
+    <div class="w-full bg-[#ECFDF5] pb-16 lg:pb-30 overflow-hidden">
         <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
 
             {{-- Header --}}

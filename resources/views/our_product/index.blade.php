@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Section Produk Unggulan --}}
-    <div class="w-full bg-[#F4FDF9] py-12 sm:py-16 md:py-24 overflow-hidden">
+    <div class="w-full bg-[#ECFDF5] py-15 lg:py-20 overflow-hidden">
         <section class="mx-auto max-w-screen-xl px-0 lg:px-8">
 
             {{-- Header Title --}}

@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Section Feedback Form --}}
-    <div class="w-full bg-[#EBFBF3] py-16 md:py-24">
+    <div class="w-full bg-[#ECFDF5] py-10 lg:py-20">
         <section class="mx-auto max-w-screen-xl p-4 sm:p-6">
 
             {{-- Header Title & Subtitle --}}
@@ -57,7 +57,7 @@
                 {{-- Submit Button --}}
                 <div class="pt-4 flex justify-start">
                     <button type="submit"
-                        class="w-full sm:w-auto px-10 py-4 text-white bg-[#047857] hover:bg-[#0369a1] focus:ring-4 focus:outline-none focus:ring-green-300 font-bold rounded-xl text-base text-center shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        class="w-full px-10 py-4 text-white bg-[#047857] hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-800 font-bold rounded-xl text-base text-center shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
                         Kirim Feedback
                     </button>
                 </div>

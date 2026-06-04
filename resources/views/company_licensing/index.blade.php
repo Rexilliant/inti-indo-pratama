@@ -3,7 +3,7 @@
 @section('content')
     {{-- Section Hero: Perizinan & Legalitas Usaha --}}
     {{-- Menggunakan warna latar hijau sangat lembut (mirip dengan desain) --}}
-    <div class="relative flex min-h-[500px] w-full items-center bg-gray-900 bg-cover bg-left lg:bg-center bg-no-repeat md:min-h-[700px] object-right overflow-hidden"
+    <div class="relative flex min-h-[500px] w-full items-center bg-[#ECFDF5] bg-cover bg-left lg:bg-center bg-no-repeat md:min-h-[700px] object-right overflow-hidden"
         style="background-image: url('{{ asset('assets_img/bg-licensing.png') }}');" aria-label="petani modern">
 
         {{-- Elemen Dekorasi Background (Opsional, untuk meniru lengkungan/blob abstrak di gambar) --}}
@@ -14,7 +14,7 @@
             class="absolute bottom-0 right-0 w-96 h-96 bg-[#D1F4E0] rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform translate-x-1/3 translate-y-1/3 pointer-events-none">
         </div>
 
-        <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 relative z-10 py-15">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
                 {{-- Kolom Kiri: Konten Teks & Badge --}}
@@ -60,7 +60,7 @@
     </div>
 
     {{-- Section Legalitas / Dokumen Perizinan --}}
-    <div class="w-full bg-[#F4FDF9] py-16 md:py-24 overflow-hidden">
+    <div class="w-full bg-[#ECFDF5] py-10 lg:py-20 overflow-hidden">
         <section class="mx-auto max-w-screen-xl px-0 lg:px-8">
 
             {{-- Header Title --}}
@@ -94,8 +94,7 @@
                         {{-- Konten Utama (Gambar & Teks) --}}
                         <div class="flex items-start gap-4 mb-8">
                             {{-- Thumbnail Dokumen --}}
-                            <div
-                                class="w-20 sm:w-24 shrink-0 items-center">
+                            <div class="w-20 sm:w-24 shrink-0 items-center">
                                 {{-- Ganti dengan path gambar dokumen asli --}}
                                 <img src="{{ asset('assets_img/licensing.png') }}" alt="Thumbnail NIB"
                                     class="w-full h-auto object-contain">
@@ -151,7 +150,7 @@
     </div>
 
     {{-- Section Banner Kepercayaan & Kepatuhan --}}
-    <div class="w-full bg-[#F4FDF9] pb-12 md:pb-16">
+    <div class="w-full bg-[#ECFDF5] pb-15 lg:pb-30">
         <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
 
             {{-- Card Container --}}

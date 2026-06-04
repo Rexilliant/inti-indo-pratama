@@ -22,7 +22,7 @@
         {{-- overlay gelap --}}
         <div class="absolute inset-0 bg-black/20"></div>
 
-        <section class="mx-auto max-w-screen-xl p-4 md:p-5 relative z-10 w-full">
+        <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 relative z-10 w-full">
 
             {{-- title --}}
             <h1
@@ -40,7 +40,8 @@
             </h1>
 
             {{-- subtitle --}}
-            <p class="mt-4 sm:mt-5 max-w-4xl text-[14px] sm:text-lg md:text-xl font-extrabold text-[#FAFAFA] leading-relaxed">
+            <p
+                class="mt-4 sm:mt-5 max-w-4xl text-[14px] sm:text-lg md:text-xl font-extrabold text-[#FAFAFA] leading-relaxed">
                 Teknologi nano terbaru yang meningkatkan penyerapan nutrisi secara signifikan, membantu tanaman tumbuh lebih
                 sehat, lebih cepat, dan lebih produktif.
             </p>
@@ -49,9 +50,9 @@
     </div>
 
     {{-- tentang kami (mobile + ipad aman) --}}
-    <div class="w-full bg-[#EEFBF5] py-10 md:py-16">
+    <div class="w-full py-10 bg-[#ECFDF5] lg:py-20">
 
-        <section class="mx-auto max-w-screen-xl p-4 md:p-5">
+        <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
 
                 {{-- content left --}}
@@ -88,9 +89,8 @@
 
                 {{-- image right --}}
                 <div class="w-full">
-                    <img src="{{ asset('assets_img/factory.png') }}"
-                        alt="Fasilitas Pabrik"
-                        class="h-auto w-full rounded-[1.5rem] sm:rounded-[2rem] object-cover shadow-xl hidden md:block">
+                    <img src="{{ asset('assets_img/factory.png') }}" alt="Fasilitas Pabrik"
+                        class="h-auto w-full rounded-[1.5rem] sm:rounded-[2rem] object-cover shadow-xl hidden lg:block">
                 </div>
 
             </div>
@@ -98,9 +98,9 @@
     </div>
 
     {{-- section produk kami --}}
-    <div class="w-full bg-[#EEFBF5] pb-10 md:pb-16">
+    <div class="w-full pb-15 bg-[#ECFDF5] lg:pb-30">
 
-        <section class="mx-auto max-w-screen-xl p-4 md:p-5 overflow-hidden">
+        <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 overflow-hidden">
 
             {{-- header section --}}
             <div class="text-center mb-8 sm:mb-14">
@@ -120,7 +120,7 @@
                 - Desktop (lg:grid): grid 3 kolom, mematikan fungsi slider
             --}}
             <div
-                class="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-6 hide-scrollbar lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:pb-0">
+                class="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-8 hide-scrollbar lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:pb-0">
 
                 {{-- Loop simulasi produk --}}
                 @for ($i = 0; $i < 6; $i++)
@@ -141,7 +141,7 @@
                         </div>
 
                         {{-- detail produk --}}
-                        <div class="p-5 sm:p-6 flex flex-col justify-between flex-grow gap-2">
+                        <div class="p-6 sm:p-8 flex flex-col justify-between flex-grow gap-2">
                             <h3 class="text-lg font-bold text-gray-900">BHOS Teknologi</h3>
 
                             <a href="#"
@@ -162,7 +162,7 @@
             {{-- tombol view more --}}
             <div class="mt-8 lg:mt-12 flex justify-center">
                 <a href="#"
-                    class="inline-flex items-center justify-center rounded-lg bg-[#EA580C] px-8 py-3 text-sm sm:text-base font-semibold text-white shadow-md transition hover:bg-[#c24106] focus:outline-none focus:ring-2 focus:ring-[#EA580C] focus:ring-offset-2 focus:ring-offset-[#EEFBF5]">
+                    class="inline-flex items-center justify-center rounded-lg bg-[#EA580C] px-8 py-4 text-sm sm:text-base font-semibold text-white shadow-md transition hover:bg-[#c24106] focus:outline-none focus:ring-2 focus:ring-[#EA580C] focus:ring-offset-2 focus:ring-offset-[#EEFBF5]">
                     View More
                 </a>
             </div>
@@ -171,9 +171,9 @@
     </div>
 
     {{-- section berita & update (mobile + ipad aman, slider aktif) --}}
-    <div class="w-full bg-[#EEFBF5] pb-10 md:pb-16">
+    <div class="w-full pb-15 bg-[#ECFDF5] lg:pb-30">
 
-        <section class="mx-auto max-w-screen-xl p-4 md:p-5 overflow-hidden">
+        <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 overflow-hidden">
 
             {{-- header section --}}
             <div class="text-center mb-10 sm:mb-14">
@@ -182,7 +182,7 @@
                     <span class="font-bold text-black">Terbaru BHOS Teknologi</span>
                 </h2>
                 {{-- max-w-4xl dan mx-auto memastikan teks panjang tetap rapi di tengah --}}
-                <p class="mx-auto max-w-4xl text-sm sm:text-base font-medium text-[#444545] leading-relaxed px-4">
+                <p class="mx-auto max-w-4xl text-sm sm:text-base font-medium text-[#444545] leading-relaxed px-4 sm:px-6">
                     Ikuti berbagai informasi terbaru seputar inovasi produk, kegiatan lapangan, kolaborasi, serta komitmen
                     BHOS Teknologi dalam mendukung pertanian yang lebih produktif dan berkelanjutan.
                 </p>
@@ -190,7 +190,7 @@
 
             {{-- grid & slider berita --}}
             <div
-                class="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-6 hide-scrollbar lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:pb-0">
+                class="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-8 hide-scrollbar lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:pb-0">
 
                 {{-- Loop simulasi 6 berita --}}
                 @for ($i = 0; $i < 6; $i++)
@@ -207,7 +207,7 @@
                         </div>
 
                         {{-- detail berita --}}
-                        <div class="p-5 sm:p-6 flex flex-col flex-grow gap-2 sm:gap-3">
+                        <div class="p-6 sm:p-8 flex flex-col flex-grow gap-2 sm:gap-3">
                             {{-- tanggal rilis --}}
                             <span class="text-xs sm:text-sm font-medium text-gray-500">
                                 01 Januari 2025
@@ -227,7 +227,7 @@
             {{-- tombol view more --}}
             <div class="mt-8 lg:mt-14 flex justify-center">
                 <a href="#"
-                    class="inline-flex items-center justify-center rounded-lg bg-[#EA580C] px-8 py-3 text-sm sm:text-base font-semibold text-white shadow-md transition hover:bg-[#c24106] focus:outline-none focus:ring-2 focus:ring-[#EA580C] focus:ring-offset-2 focus:ring-offset-[#EEFBF5]">
+                    class="inline-flex items-center justify-center rounded-lg bg-[#EA580C] px-8 py-4 text-sm sm:text-base font-semibold text-white shadow-md transition hover:bg-[#c24106] focus:outline-none focus:ring-2 focus:ring-[#EA580C] focus:ring-offset-2 focus:ring-offset-[#EEFBF5]">
                     View More
                 </a>
             </div>

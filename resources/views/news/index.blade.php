@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- hero banner (mobile + ipad aman) --}}
-    <div class="relative flex min-h-[500px] w-full items-center bg-gray-900 bg-cover bg-left bg-no-repeat md:min-h-[600px]"
+    <div class="relative flex min-h-[500px] w-full items-center bg-[#ECFDF5] bg-cover bg-left bg-no-repeat md:min-h-[700px]"
         style="background-image: url('{{ asset('assets_img/bg-news.png') }}');">
 
         {{-- overlay gelap --}}
@@ -31,7 +31,7 @@
     </div>
 
     {{-- Section Artikel & Berita --}}
-    <div class="w-full bg-[#F4FDF9] py-12 sm:py-16 md:py-24">
+    <div class="w-full bg-[#ECFDF5] py-10 lg:py-20">
         <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
 
             {{-- Top Bar: Kategori Filter & Search Bar --}}
@@ -88,7 +88,8 @@
                         class="shrink-0 w-[85%] sm:w-[45%] lg:w-auto snap-center lg:snap-align-none flex flex-col bg-white border border-gray-200 rounded-2xl sm:rounded-3xl shadow-sm hover:shadow-lg overflow-hidden transition-all duration-300 hover:-translate-y-1.5 focus-within:ring-2 focus-within:ring-[#047857]">
 
                         {{-- Thumbnail Artikel --}}
-                        <a href="#" class="block w-full aspect-[16/9] bg-gray-100 relative overflow-hidden group">
+                        <a href="{{ route('news.news-detail') }}"
+                            class="block w-full aspect-[16/9] bg-gray-100 relative overflow-hidden group">
                             <img src="{{ asset('assets_img/bg-news.png') }}" alt="Daun Jagung"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </a>
@@ -100,7 +101,8 @@
 
                             {{-- Judul --}}
                             <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 line-clamp-2 leading-snug">
-                                <a href="#" class="hover:text-[#047857] transition-colors focus:outline-none">
+                                <a href="{{ route('news.news-detail') }}"
+                                    class="hover:text-[#047857] transition-colors focus:outline-none">
                                     Pupuk Nano BHOS Terbukti Meningkatkan Hasil 35% di Wilayah Kering
                                 </a>
                             </h3>
@@ -113,7 +115,7 @@
 
                             {{-- Tombol (mt-auto akan selalu mendorong tombol ke bagian paling bawah walau tinggi teks berbeda) --}}
                             <div class="mt-auto">
-                                <a href="#"
+                                <a href="{{ route('news.news-detail') }}"
                                     class="inline-flex justify-center items-center w-full sm:w-auto px-5 py-2.5 text-sm font-bold text-white bg-[#047857] rounded-lg hover:bg-[#0369a1] focus:ring-4 focus:outline-none focus:ring-green-300 transition-all shadow-sm">
                                     Baca Selengkapnya
                                 </a>
