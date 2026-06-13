@@ -120,7 +120,7 @@
                                 <td class="px-6 py-4 font-medium whitespace-normal min-w-[250px]">{{ $data['nama'] }}</td>
                                 <td class="px-6 py-4 whitespace-normal">{{ $data['provinsi'] }}</td>
                                 <td class="px-6 py-4 text-center">
-                                    <a href="{{ route('admin.faqs.edit') }}" class="text-blue-600 hover:underline">Sunting</a>
+                                    <a href="{# class="text-blue-600 hover:underline">Sunting</a>
                                     <span class="mx-1">|</span>
                                     <form action="#" class="inline-block form-delete">
                                         <button type="submit"

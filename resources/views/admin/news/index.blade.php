@@ -97,7 +97,7 @@
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 text-center">
-                                    <a href="{{ route('admin.faqs.edit') }}"
+                                    <a href="#"
                                         class="text-blue-600 hover:underline">Sunting</a>
                                     <span class="mx-1">|</span>
                                     <form action="#" class="inline-block form-delete">
