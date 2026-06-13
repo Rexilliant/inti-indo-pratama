@@ -32,7 +32,7 @@
         </a>
 
         {{-- Our Product --}}
-        <a href="#"
+        <a href="{{ route('admin.product.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-product')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@
         </a>
 
         {{-- Company Licensing --}}
-        <a href="#"
+        <a href="{{ route('admin.licensing.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-licensing')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -56,7 +56,7 @@
         </a>
 
         {{-- News --}}
-        <a href="#"
+        <a href="{{ route('admin.news.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-news')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -68,7 +68,7 @@
         </a>
 
         {{-- Testimoni --}}
-        <a href="#"
+        <a href="{{ route('admin.testimoni.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-testimoni')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -80,7 +80,7 @@
         </a>
 
         {{-- Feedback --}}
-        <a href="#"
+        <a href="{{ route('admin.feedback.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-feedback')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -92,7 +92,7 @@
         </a>
 
         {{-- FaQs --}}
-        <a href="#"
+        <a href="{{ route('admin.faqs.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-faqs')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -166,7 +166,7 @@
         </a>
 
         {{-- Our Product --}}
-        <a href="#"
+        <a href="{{ route('admin.product.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-product')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -178,7 +178,7 @@
         </a>
 
         {{-- Company Licensing --}}
-        <a href="#"
+        <a href="{{ route('admin.licensing.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-licensing')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -190,7 +190,7 @@
         </a>
 
         {{-- News --}}
-        <a href="#"
+        <a href="{{ route('admin.news.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-news')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -202,7 +202,7 @@
         </a>
 
         {{-- Testimoni --}}
-        <a href="#"
+        <a href="{{ route('admin.testimoni.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-testimoni')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -214,7 +214,7 @@
         </a>
 
         {{-- Feedback --}}
-        <a href="#"
+        <a href="{{ route('admin.feedback.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-feedback')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -226,7 +226,7 @@
         </a>
 
         {{-- FaQs --}}
-        <a href="#"
+        <a href="{{ route('admin.faqs.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-faqs')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
