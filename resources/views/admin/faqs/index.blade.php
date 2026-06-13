@@ -93,49 +93,28 @@
 
                     <tbody class="bg-gray-200 divide-y divide-gray-500">
                         {{-- Baris Data Statis 1 --}}
-                        <tr class="[&>td]:border-b [&>td]:border-gray-400 hover:bg-gray-100">
-                            <td class="px-6 py-4">07/06/2026</td>
-                            <td class="px-6 py-4 font-medium whitespace-normal min-w-[250px]">Bagaimana cara mendaftarkan
-                                akun baru di aplikasi?</td>
-                            <td class="px-6 py-4 text-center">
-                                <a href="{{ route('admin.faqs.edit') }}" class="text-blue-600 hover:underline">Sunting</a>
-                                <span class="mx-1">|</span>
-                                <form action="#" class="inline-block form-delete">
-                                    <button type="submit"
-                                        class="text-red-600 hover:underline cursor-pointer">Hapus</button>
-                                </form>
-                            </td>
-                        </tr>
+                        @forelse ($faqs as $faq)
+                            <tr class="[&>td]:border-b [&>td]:border-gray-400 hover:bg-gray-100">
+                                <td class="px-6 py-4">{{ $faq->created_at->format('d/m/Y') }}</td>
+                                <td class="px-6 py-4 font-medium whitespace-normal min-w-[250px]">{{ $faq->question }}</td>
+                                <td class="px-6 py-4 text-center">
+                                    <a href="{{ route('admin.faqs.edit', $faq->id) }}"
+                                        class="text-blue-600 hover:underline">Sunting</a>
+                                    <span class="mx-1">|</span>
+                                    <form action="{{ route('admin.faqs.destroy', $faq->id) }}" method="POST" class="inline-block form-delete">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="text-red-600 hover:underline cursor-pointer">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="3" class="px-6 py-4 text-center">No data found</td>
+                            </tr>
+                        @endforelse
 
-                        {{-- Baris Data Statis 2 --}}
-                        <tr class="[&>td]:border-b [&>td]:border-gray-400 hover:bg-gray-100">
-                            <td class="px-6 py-4">05/06/2026</td>
-                            <td class="px-6 py-4 font-medium whitespace-normal min-w-[250px]">Apakah ada biaya tambahan
-                                untuk pengiriman luar kota?</td>
-                            <td class="px-6 py-4 text-center">
-                                <a href="{{ route('admin.faqs.edit') }}" class="text-blue-600 hover:underline">Sunting</a>
-                                <span class="mx-1">|</span>
-                                <form action="#" class="inline-block form-delete">
-                                    <button type="submit"
-                                        class="text-red-600 hover:underline cursor-pointer">Hapus</button>
-                                </form>
-                            </td>
-                        </tr>
-
-                        {{-- Baris Data Statis 3 --}}
-                        <tr class="[&>td]:border-b [&>td]:border-gray-400 hover:bg-gray-100">
-                            <td class="px-6 py-4">01/06/2026</td>
-                            <td class="px-6 py-4 font-medium whitespace-normal min-w-[250px]">Bagaimana prosedur
-                                pengembalian barang yang cacat?</td>
-                            <td class="px-6 py-4 text-center">
-                                <a href="{{ route('admin.faqs.edit') }}" class="text-blue-600 hover:underline">Sunting</a>
-                                <span class="mx-1">|</span>
-                                <form action="#" class="inline-block form-delete">
-                                    <button type="submit"
-                                        class="text-red-600 hover:underline cursor-pointer">Hapus</button>
-                                </form>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -170,8 +149,7 @@
                         <a href="#"
                             class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-400 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
                             <span class="sr-only">Next</span>
-                            <svg class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor"
-                                aria-hidden="true">
+                            <svg class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
                                     clip-rule="evenodd" />
@@ -192,6 +170,7 @@
         document.querySelectorAll('.form-delete').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
+                const targetForm = this;
 
                 Swal.fire({
                     title: 'Anda yakin?',
@@ -204,11 +183,7 @@
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire(
-                            'Terhapus!',
-                            'Data mockup berhasil dihapus. (Ini hanya visual UI)',
-                            'success'
-                        )
+                        targetForm.submit();
                     }
                 });
             });
