@@ -8,25 +8,17 @@ trait HasActivityRequestInfo
 {
     public function tapActivity(Activity $activity, string $eventName): void
     {
-        $properties = $activity->properties ?? collect();
+        $properties = collect($activity->properties ?? []);
 
-        if (app()->runningInConsole()) {
-            $activity->properties = $properties->merge([
-                'request' => [
-                    'source' => 'console/seeder',
-                ],
-            ]);
+        $requestInfo = app()->runningInConsole()
+            ? ['source' => 'console/seeder']
+            : [
+                'ip_address'  => request()->ip(),
+                'url'         => request()->fullUrl(),
+                'method'      => request()->method(),
+                'user_agent'  => request()->userAgent(),
+            ];
 
-            return;
-        }
-
-        $activity->properties = $properties->merge([
-            'request' => [
-                'ip_address' => request()->ip(),
-                'url' => request()->fullUrl(),
-                'method' => request()->method(),
-                'user_agent' => request()->userAgent(),
-            ],
-        ]);
+        $activity->properties = $properties->put('request', $requestInfo);
     }
 }

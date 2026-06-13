@@ -1,64 +1,52 @@
 <?php
 
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\LogActivityController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-
-
 // Client Side (Front Office)
 Route::get('/', function () {
-return view('welcome');
+    return view('welcome');
 });
 
 Route::get('/landing-page', function () {
-return view('landing_page.index');
+    return view('landing_page.index');
 })->name('landing_page.index');
 
 Route::get('/about-us', function () {
-return view('about_us.index');
+    return view('about_us.index');
 })->name('about_us.index');
 
 Route::get('/faqs', function () {
-return view('faqs.index');
+    return view('faqs.index');
 })->name('faqs.index');
 
 Route::get('/our-product', function () {
-return view('our_product.index');
+    return view('our_product.index');
 })->name('our_product.index');
 
 Route::get('/product-details', function () {
-return view('our_product.product-details');
+    return view('our_product.product-details');
 })->name('our_product.product-details');
 
 Route::get('/feedback', function () {
-return view('feedback.index');
+    return view('feedback.index');
 })->name('feedback.index');
 
 Route::get('/news', function () {
-return view('news.index');
+    return view('news.index');
 })->name('news.index');
 
 Route::get('/news-detail', function () {
-return view('news.news-detail');
+    return view('news.news-detail');
 })->name('news.news-detail');
 
 Route::get('/company-licensing', function () {
-return view('company_licensing.index');
+    return view('company_licensing.index');
 })->name('company_licensing.index');
 
 // Admin (Back Office)
-// FaQs
-Route::get('/admin-faqs', function () {
-    return view('admin.faqs.index');
-})->name('admin.faqs.index');
-
-Route::get('/admin-faqs-create', function () {
-    return view('admin.faqs.create');
-})->name('admin.faqs.create');
-
-Route::get('/admin-faqs-edit', function () {
-    return view('admin.faqs.edit');
-})->name('admin.faqs.edit');
 
 // Testimoni Back Office
 Route::get('/admin-testimoni', function () {
@@ -72,7 +60,6 @@ Route::get('/admin-testimoni-create', function () {
 Route::get('/admin-testimoni-edit', function () {
     return view('admin.testimoni.edit');
 })->name('admin.testimoni.edit');
-
 
 // Company Licensing
 Route::get('/admin-licensing', function () {
@@ -120,12 +107,32 @@ Route::get('/admin-news.edit', function () {
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::prefix('admin')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-require __DIR__.'/auth.php';
+        // FaQs
+        Route::controller(FaqController::class)->prefix('faqs')->name('admin.faqs.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{faq}/edit', 'edit')->name('edit');
+            Route::put('/{faq}', 'update')->name('update');
+            Route::delete('/{faq}', 'destroy')->name('destroy');
+        });
+        // Log Activity
+        Route::controller(LogActivityController::class)->prefix('log-activity')->name('admin.log-activity.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/{activity}', 'show')->name('show');
+        });
+        
+    });
+
+require __DIR__ . '/auth.php';
