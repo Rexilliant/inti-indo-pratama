@@ -4,7 +4,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    @vite(['resources/css/app.css', 'resources/css/custom.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/css/custom.css', 'resources/js/app.js']) --}}
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
     @yield('addCss')
 </head>
