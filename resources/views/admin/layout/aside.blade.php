@@ -32,7 +32,7 @@
         </a>
 
         {{-- Our Product --}}
-        <a href="#"
+        <a href="{{ route('admin.product.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-product')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@
         </a>
 
         {{-- Company Licensing --}}
-        <a href="#"
+        <a href="{{ route('admin.licensing.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-licensing')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -56,7 +56,7 @@
         </a>
 
         {{-- News --}}
-        <a href="#"
+        <a href="{{ route('admin.news.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-news')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -68,7 +68,7 @@
         </a>
 
         {{-- Testimoni --}}
-        <a href="#"
+        <a href="{{ route('admin.testimoni.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-testimoni')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -80,7 +80,7 @@
         </a>
 
         {{-- Feedback --}}
-        <a href="#"
+        <a href="{{ route('admin.feedback.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-feedback')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -92,7 +92,7 @@
         </a>
 
         {{-- FaQs --}}
-        <a href="#"
+        <a href="{{ route('admin.faqs.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-faqs')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -101,6 +101,17 @@
                 </svg>
             </span>
             <span class="font-semibold text-[14px]">FaQs</span>
+        </a>
+        {{-- FaQs --}}
+        <a href="{{ route('admin.log-activity.index') }}"
+            class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-log-activity')">
+            <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
+                <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
+                </svg>
+            </span>
+            <span class="font-semibold text-[14px]">Log Activity</span>
         </a>
 
         {{-- Profile --}}
@@ -166,7 +177,7 @@
         </a>
 
         {{-- Our Product --}}
-        <a href="#"
+        <a href="{{ route('admin.product.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-product')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -178,7 +189,7 @@
         </a>
 
         {{-- Company Licensing --}}
-        <a href="#"
+        <a href="{{ route('admin.licensing.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-licensing')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -190,7 +201,7 @@
         </a>
 
         {{-- News --}}
-        <a href="#"
+        <a href="{{ route('admin.news.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-news')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -202,7 +213,7 @@
         </a>
 
         {{-- Testimoni --}}
-        <a href="#"
+        <a href="{{ route('admin.testimoni.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-testimoni')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -214,7 +225,7 @@
         </a>
 
         {{-- Feedback --}}
-        <a href="#"
+        <a href="{{ route('admin.feedback.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-feedback')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -226,7 +237,7 @@
         </a>
 
         {{-- FaQs --}}
-        <a href="#"
+        <a href="{{ route('admin.faqs.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-faqs')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
