@@ -44,7 +44,7 @@
         </a>
 
         {{-- Company Licensing --}}
-        <a href="{{ route('admin.licensing.index') }}"
+        <a href="{{ route('admin.company_licensing.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-licensing')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -189,7 +189,7 @@
         </a>
 
         {{-- Company Licensing --}}
-        <a href="{{ route('admin.licensing.index') }}"
+        <a href="{{ route('admin.company_licensing.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-licensing')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">

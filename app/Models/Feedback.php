@@ -13,7 +13,9 @@ class Feedback extends Model
 {
     use HasFactory, SoftDeletes, LogsActivity, HasActivityRequestInfo;
 
-    protected $fillable = ['name', 'email', 'subject', 'message'];
+    protected $table = 'feedbacks';
+
+    protected $fillable = ['tanggal','name', 'email', 'subject', 'message'];
 
     public function getActivitylogOptions(): LogOptions
     {

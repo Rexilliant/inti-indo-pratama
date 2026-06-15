@@ -4,6 +4,10 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LogActivityController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\LicensingController;
+use App\Models\CompanyLicense;
+
 
 // Client Side (Front Office)
 Route::get('/', function () {
@@ -34,6 +38,9 @@ Route::get('/feedback', function () {
     return view('feedback.index');
 })->name('feedback.index');
 
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+
+
 Route::get('/news', function () {
     return view('news.index');
 })->name('news.index');
@@ -42,8 +49,10 @@ Route::get('/news-detail', function () {
     return view('news.news-detail');
 })->name('news.news-detail');
 
+// Fix Route Guest
 Route::get('/company-licensing', function () {
-    return view('company_licensing.index');
+    $licenses = CompanyLicense::all();
+    return view('company_licensing.index', compact('licenses'));
 })->name('company_licensing.index');
 
 // Admin (Back Office)
@@ -60,24 +69,6 @@ Route::get('/admin-testimoni-create', function () {
 Route::get('/admin-testimoni-edit', function () {
     return view('admin.testimoni.edit');
 })->name('admin.testimoni.edit');
-
-// Company Licensing
-Route::get('/admin-licensing', function () {
-    return view('admin.company_licensing.index');
-})->name('admin.licensing.index');
-
-Route::get('/admin-licensing-create', function () {
-    return view('admin.company_licensing.create');
-})->name('admin.licensing.create');
-
-Route::get('/admin-licensing-edit', function () {
-    return view('admin.company_licensing.edit');
-})->name('admin.licensing.edit');
-
-// Feedback
-Route::get('/admin-feedback', function () {
-    return view('admin.feedback.index');
-})->name('admin.feedback.index');
 
 // Our Product
 Route::get('/admin-product', function () {
@@ -132,6 +123,29 @@ Route::prefix('admin')
             Route::get('/', 'index')->name('index');
             Route::get('/{activity}', 'show')->name('show');
         });
+
+        // Feedback
+        Route::controller(FeedbackController::class)
+            ->prefix('feedback')
+            ->name('admin.feedback.')
+            ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::delete('/{id}', 'destroy')->name('destroy');
+        });
+
+        // Company Licensing
+        Route::controller(LicensingController::class)
+            ->prefix('licensing')
+            ->name('admin.company_licensing.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/', 'store')->name('store');
+                Route::get('/{id}/edit', 'edit')->name('edit');
+                Route::put('/{id}', 'update')->name('update');
+                Route::delete('/{id}', 'destroy')->name('destroy');
+                Route::get('/download/{id}', 'download')->name('license.download');
+            });
 
     });
 

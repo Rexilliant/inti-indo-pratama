@@ -1,5 +1,5 @@
 <header class="bg-white p-5 shadow-[0_6px_9px_rgba(0,0,0,0.25)] sticky z-[90] top-0 left-0">
-    <nav class="bg-neutral-primary fixed w-full z-20 top-0 start-0 border-b border-default">
+    <nav class="bg-[#FAFAFA] fixed w-full z-20 top-0 start-0 border-b border-default">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="{{ asset('assets_img/logo-2.png') }}" class="h-11" alt="Logo BHOS Teknologi" />
