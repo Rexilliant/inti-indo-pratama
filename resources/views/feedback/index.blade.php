@@ -79,7 +79,7 @@
                 icon: 'success',
                 title: 'Berhasil!',
                 text: "{{ session('success') }}",
-                confirmButtonColor: '#047857', // Warna hijau senada tombol kirim
+                confirmButtonColor: '#047857',
                 confirmButtonText: 'Oke'
             });
         </script>

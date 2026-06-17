@@ -65,7 +65,7 @@ class LicensingController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'document' => 'required|image|mimes:png,jpg,jpeg|max:3072', // Hanya gambar & max 3MB
+            'document' => 'nullable|image|mimes:png,jpg,jpeg|max:3072',
         ]);
 
         $license->update([

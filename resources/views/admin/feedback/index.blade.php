@@ -1,6 +1,5 @@
 @extends('admin.layout.master')
 
-{{-- sidebar active (sesuaikan menu kamu) --}}
 @section('open-feedback', 'open')
 @section('menu-feedback', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
 
@@ -15,18 +14,15 @@
 
     {{-- Filter Form --}}
     <section class="bg-white p-4 sm:p-5 shadow border border-gray-300 rounded-lg mb-5">
-        {{-- Update action ke route index --}}
         <form action="{{ route('admin.feedback.index') }}" method="GET" class="mb-2 sm:mb-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
                 <div class="flex flex-col w-full">
                     <label class="text-xs font-semibold text-gray-700 mb-1">Pencarian</label>
-                    {{-- Tambah value="{{ request('search') }}" --}}
                     <input type="text" name="search" placeholder="Cari..." value="{{ request('search') }}"
                         class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none" />
                 </div>
                 <div class="flex flex-col w-full">
                     <label class="text-xs font-semibold text-gray-700 mb-1">Tanggal</label>
-                    {{-- Tambah value="{{ request('date') }}" --}}
                     <input type="date" name="date" value="{{ request('date') }}"
                         class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none" />
                 </div>
@@ -84,7 +80,7 @@
                                 </td>
                             </tr>
 
-                            {{-- Modal Pop-up (Dah gua bersihin duplikat div-nya biar rapi) --}}
+                            {{-- Modal Pop-up --}}
                             <div id="modal-{{ $item->id }}"
                                 class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm">
 
@@ -151,7 +147,6 @@
             document.getElementById(id).classList.add('hidden');
         }
 
-        // Perbaikan script delete biar form-nya ke-submit
         document.querySelectorAll('.form-delete').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -164,7 +159,7 @@
                     confirmButtonText: 'Ya, hapus'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        form.submit(); // Submit form jika user pilih "Ya"
+                        form.submit();
                     }
                 });
             });

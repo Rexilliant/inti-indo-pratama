@@ -2,11 +2,9 @@
 
 @section('content')
     {{-- Section Hero: Perizinan & Legalitas Usaha --}}
-    {{-- Menggunakan warna latar hijau sangat lembut (mirip dengan desain) --}}
     <div class="relative flex min-h-[500px] w-full items-center bg-[#ECFDF5] bg-cover bg-left lg:bg-center bg-no-repeat md:min-h-[700px] object-right overflow-hidden"
         style="background-image: url('{{ asset('assets_img/bg-licensing.png') }}');" aria-label="petani modern">
 
-        {{-- Elemen Dekorasi Background (Opsional, untuk meniru lengkungan/blob abstrak di gambar) --}}
         <div
             class="absolute top-0 left-0 w-64 h-64 bg-[#D1F4E0] rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         </div>
@@ -41,12 +39,10 @@
                     {{-- Badge / Info Card --}}
                     <div
                         class="inline-flex items-center gap-4 bg-white border border-gray-200 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] max-w-lg transition-transform hover:-translate-y-1 duration-300">
-                        {{-- Ikon Shield (Bisa diganti dengan SVG asli dari desainer) --}}
                         <div
                             class="shrink-0 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#F4FDF9] rounded-full border border-[#047857]/20">
                             <img src="{{ asset('assets_img/shield.png') }}" alt="Trusted">
                         </div>
-                        {{-- Teks Badge --}}
                         <p class="text-sm sm:text-base font-bold text-[#047857] leading-snug">
                             Seluruh Dokumen Dibawah Ini adalah Asli dan Sah Sesuai dengan Peraturan yang Berlaku di
                             Indonesia
@@ -86,7 +82,7 @@
                     <div
                         class="shrink-0 w-[90%] sm:w-[45%] lg:w-auto snap-center lg:snap-align-none bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
 
-                        {{-- Judul Dokumen: Dikasih h-16 dan line-clamp-2 biar semua judul tingginya sama --}}
+                        {{-- Judul Dokumen --}}
                         <h3
                             class="text-xl sm:text-2xl font-bold text-gray-900 mb-6 leading-snug h-16 overflow-hidden line-clamp-2">
                             {{ $license->name }}
@@ -97,13 +93,13 @@
                             {{-- Thumbnail Dokumen --}}
                             <div class="w-20 sm:w-24 shrink-0 items-center">
                                 <img src="{{ $license->getFirstMediaUrl('licenses', 'thumb') ?: asset('assets_img/licensing.png') }}"
-                                    alt="{{ $license->name }}" class="w-full h-auto object-contain">
+                                    alt="{{ $license->name }}" class="w-full sm:h-[9rem] object-contain">
                             </div>
 
-                            {{-- Deskripsi & Status: Dikasih min-h-[4.5rem] biar area deskripsi konsisten --}}
+                            {{-- Deskripsi & Status: --}}
                             <div class="flex flex-col gap-3">
                                 <p
-                                    class="text-sm text-gray-600 leading-relaxed overflow-hidden line-clamp-3 min-h-[4.5rem]">
+                                    class="text-sm text-gray-600 leading-relaxed overflow-hidden line-clamp-3 min-h-[5.5rem]">
                                     {{ $license->description }}
                                 </p>
 
@@ -127,7 +123,6 @@
                                 Lihat Dokumen
                             </a>
 
-                            {{-- Ganti dari link media langsung ke route download --}}
                             {{-- Tombol Unduh Dokumen --}}
                             <a href="{{ route('admin.company_licensing.license.download', $license->id) }}"
                                 class="flex items-center justify-center gap-1.5 px-2 sm:px-4 py-2.5 text-xs sm:text-sm font-bold text-white bg-[#047857] border border-[#047857] rounded-xl hover:bg-[#0369a1] transition-colors lg:whitespace-nowrap">
@@ -155,11 +150,9 @@
             <div
                 class="relative bg-white border border-gray-200 rounded-[2rem] p-6 sm:p-8 lg:p-10 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col md:flex-row items-center md:items-stretch gap-6 lg:gap-10 overflow-hidden">
 
-                {{-- Bagian Kiri: Ikon (Shield + Leaves) --}}
                 <div class="shrink-0 flex items-center justify-center md:self-center">
                     <div
                         class="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-[#047857]/40 bg-[#F4FDF9]">
-                        {{-- Menggunakan SVG Shield Check mirip desain, warnanya di-set ke hijau #047857 --}}
                         <img src="{{ asset('assets_img/shield.png') }}" alt="Trusted">
                     </div>
                 </div>
@@ -178,10 +171,6 @@
 
                 {{-- Bagian Kanan: Gambar Maskot Pekerja --}}
                 <div class="shrink-0 flex justify-center mt-4 md:mt-0 md:-my-10 lg:-my-12">
-                    {{-- 
-                        Ganti dengan path maskot Anda. 
-                        Tinggi gambar dimaksimalkan, tapi lebarnya dibatasi agar tidak merusak layout flex 
-                    --}}
                     <img src="{{ asset('assets_img/maskot-worker.png') }}" alt="Maskot Pekerja Kepercayaan"
                         class="w-32 sm:w-40 lg:w-48 h-auto object-contain drop-shadow-md transition-transform hover:scale-105 duration-300">
                 </div>

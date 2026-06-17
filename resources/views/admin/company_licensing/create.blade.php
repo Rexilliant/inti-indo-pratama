@@ -2,6 +2,58 @@
 @section('open-licensing', 'open')
 @section('menu-licensing', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
 
+@section('addCss')
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <style>
+        /* Mengubah font default FilePond agar ikut font master */
+        .filepond--root {
+            font-family: inherit;
+            margin-bottom: 0;
+            min-height: 250px !important;
+        }
+
+        .filepond--drop-label {
+            background-color: transparent !important;
+            cursor: pointer;
+            min-height: 250px !important;
+
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 1.5rem !important;
+        }
+
+        .filepond--panel-root {
+            background-color: #ffffff !important;
+            border: 2px dashed #d1d5db !important;
+            border-radius: 1rem !important;
+            transition: all 0.3s ease;
+        }
+
+        .filepond--root:hover .filepond--panel-root {
+            border-color: #3b82f6 !important;
+            background-color: #eff6ff !important;
+        }
+
+        .filepond--label-action {
+            text-decoration: none;
+            cursor: pointer;
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .filepond--drop-label>div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+    </style>
+@endsection
+
 @section('content')
     <section class="mb-6">
         <div class="text-xl font-bold">Tambah Licensing</div>
@@ -39,38 +91,9 @@
         <div class="bg-gray-200/80 p-5 rounded-xl mb-5">
             <label class="block font-bold mb-2 text-gray-800">Dokumen Perizinan</label>
 
-            <div id="drop-zone"
-                class="relative group cursor-pointer mt-1 flex flex-col items-center justify-center min-h-[250px] w-full p-4 border-2 border-dashed rounded-2xl transition-all duration-300 overflow-hidden bg-white border-gray-300 hover:border-blue-500 hover:bg-blue-50/50">
-
-                <input id="document" name="document" type="file" class="sr-only" accept=".png, .jpg, .jpeg, .pdf">
-
-                {{-- Tampilan Sebelum Upload --}}
-                <div id="upload-placeholder" class="flex flex-col items-center justify-center space-y-4 py-8">
-                    <div class="p-4 bg-blue-50 rounded-full group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-base font-bold text-gray-700">Klik atau Tarik file ke sini</p>
-                        <p class="text-xs text-gray-500 mt-1 font-medium">PNG, JPG, PDF (Maksimum 3MB)</p>
-                    </div>
-                </div>
-
-                {{-- Tampilan Setelah Upload --}}
-                <div id="preview-area"
-                    class="hidden absolute inset-0 flex flex-col items-center justify-center bg-white p-4">
-                    <div id="preview-content" class="w-full h-full flex items-center justify-center overflow-hidden">
-                        {{-- Gambar akan diinject ke sini dengan w-full h-full object-contain --}}
-                    </div>
-                    <div class="absolute bottom-4 flex flex-col items-center">
-                        <p id="file-name" class="text-xs font-bold text-gray-500 mb-1"></p>
-                        <button type="button" id="remove-btn"
-                            class="text-[10px] font-bold text-red-600 hover:underline">KLIK LAGI UNTUK MENGGANTI</button>
-                    </div>
-                </div>
+            {{-- FilePond Input --}}
+            <div class="mt-1">
+                <input id="document" type="file" name="document" accept="image/png,image/jpeg,image/jpg" />
             </div>
         </div>
 
@@ -89,67 +112,55 @@
 @endsection
 
 @section('addJs')
+    {{-- SweetAlert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- FilePond Plugins & Core --}}
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+
     <script>
-        const dropZone = document.getElementById('drop-zone');
-        const documentInput = document.getElementById('document');
-        const placeholder = document.getElementById('upload-placeholder');
-        const previewArea = document.getElementById('preview-area');
-        const previewContent = document.getElementById('preview-content');
-        const fileName = document.getElementById('file-name');
-        const removeBtn = document.getElementById('remove-btn');
+        // Register FilePond Plugins
+        FilePond.registerPlugin(
+            FilePondPluginFileValidateType,
+            FilePondPluginFileValidateSize,
+            FilePondPluginImagePreview
+        );
 
-        // Klik area buat buka file dialog
-        dropZone.addEventListener('click', () => documentInput.click());
+        // Desain HTML kustom
+        const customIconPlaceholder = `
+            <div class="flex flex-col items-center justify-center space-y-4">
+                <div class="p-4 bg-blue-50 rounded-full transition-transform duration-300 hover:scale-110">
+                    <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="text-center">
+                    <p class="text-base font-bold text-gray-700"><span class="filepond--label-action">Klik</span> atau Tarik file ke sini</p>
+                    <p class="text-xs text-gray-500 mt-1 font-medium">PNG, JPG, JPEG (Maksimum 3MB)</p>
+                </div>
+            </div>
+        `;
 
-        documentInput.addEventListener('change', function(e) {
-            handleFile(this.files[0]);
+        // Initialize FilePond
+        const inputElement = document.querySelector('#document');
+        const pond = FilePond.create(inputElement, {
+            storeAsFile: true,
+
+            acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
+            maxFileSize: '3MB',
+            labelIdle: customIconPlaceholder,
+            labelFileTypeNotAllowed: 'Format file tidak didukung',
+            fileValidateTypeLabelExpectedTypes: 'Hanya PNG/JPG/JPEG',
+            labelMaxFileSizeExceeded: 'Ukuran file terlalu besar',
+            labelMaxFileSize: 'Maksimum 3MB',
         });
 
-        function handleFile(file) {
-            if (!file) return;
-
-            fileName.textContent = file.name;
-            placeholder.classList.add('hidden');
-            previewArea.classList.remove('hidden');
-
-            if (file.type.startsWith('image/')) {
-                // w-full h-full object-contain memastikan gambar memenuhi container tapi tidak gepeng
-                previewContent.innerHTML =
-                    `<img src="${URL.createObjectURL(file)}" class="w-full h-full object-contain rounded-lg">`;
-            } else {
-                previewContent.innerHTML = `
-                <div class="flex flex-col items-center text-red-500">
-                    <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 20 20"><path d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H4zm0 2h12v12H4V4z"/></svg>
-                    <span class="text-xs font-bold mt-2">PDF DOCUMENT</span>
-                </div>`;
-            }
-        }
-
-        removeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            documentInput.value = '';
-            placeholder.classList.remove('hidden');
-            previewArea.classList.add('hidden');
-            previewContent.innerHTML = '';
-        });
-
-        // Drag & Drop Handling
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('border-blue-500');
-        });
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('border-blue-500');
-        });
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('border-blue-500');
-            const file = e.dataTransfer.files[0];
-            documentInput.files = e.dataTransfer.files;
-            handleFile(file);
-        });
-
+        // SweetAlert Cancel Confirmation
         function confirmCancel() {
             Swal.fire({
                 title: 'Batal menambah data?',

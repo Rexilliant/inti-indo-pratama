@@ -101,27 +101,18 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         @if (session('success'))
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            });
-
-            Toast.fire({
+            Swal.fire({
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
                 icon: 'success',
-                title: "{{ session('success') }}"
+                confirmButtonColor: '#53BF6A',
+                confirmButtonText: 'OK'
             });
         @endif
 
         document.querySelectorAll('.form-delete').forEach(form => {
             form.addEventListener('submit', function(e) {
-                e.preventDefault(); // Stop form biar gak langsung ke-submit
+                e.preventDefault();
 
                 Swal.fire({
                     title: 'Anda yakin?',
@@ -133,7 +124,7 @@
                     confirmButtonText: 'Ya, hapus'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        this.submit(); // <--- INI KUNCINYA, form-nya jalanin action delete
+                        this.submit();
                     }
                 });
             });
