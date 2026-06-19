@@ -66,6 +66,17 @@
             </span>
             <span class="font-semibold text-[14px]">News</span>
         </a>
+        {{-- News Category --}}
+        <a href="{{ route('admin.news-category.index') }}"
+            class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-news-category')">
+            <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
+                <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
+                    <path
+                        d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2h12v2H6zm0-3V9h12v2H6zm0-3V6h12v2H6z" />
+                </svg>
+            </span>
+            <span class="font-semibold text-[14px]">News Category</span>
+        </a>
 
         {{-- Testimoni --}}
         <a href="{{ route('admin.testimoni.index') }}"
@@ -210,6 +221,17 @@
                 </svg>
             </span>
             <span class="font-semibold text-[14px]">News</span>
+        </a>
+        {{-- News Category --}}
+        <a href="{{ route('admin.news.index') }}"
+            class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-news-category')">
+            <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
+                <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
+                    <path
+                        d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 14v-2h12v2H6zm0-3V9h12v2H6zm0-3V6h12v2H6z" />
+                </svg>
+            </span>
+            <span class="font-semibold text-[14px]">News Category</span>
         </a>
 
         {{-- Testimoni --}}
