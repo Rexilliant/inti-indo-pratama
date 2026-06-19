@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\LicensingController;
 use App\Models\CompanyLicense;
-
+use App\Http\Controllers\Admin\ProductController;
 
 // Client Side (Front Office)
 Route::get('/', function () {
@@ -70,18 +70,6 @@ Route::get('/admin-testimoni-edit', function () {
     return view('admin.testimoni.edit');
 })->name('admin.testimoni.edit');
 
-// Our Product
-Route::get('/admin-product', function () {
-    return view('admin.our_product.index');
-})->name('admin.product.index');
-
-Route::get('/admin-product.create', function () {
-    return view('admin.our_product.create');
-})->name('admin.product.create');
-
-Route::get('/admin-product.edit', function () {
-    return view('admin.our_product.edit');
-})->name('admin.product.edit');
 
 // Our News
 Route::get('/admin-news', function () {
@@ -138,14 +126,30 @@ Route::prefix('admin')
             ->prefix('licensing')
             ->name('admin.company_licensing.')
             ->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/', 'store')->name('store');
-                Route::get('/{id}/edit', 'edit')->name('edit');
-                Route::put('/{id}', 'update')->name('update');
-                Route::delete('/{id}', 'destroy')->name('destroy');
-                Route::get('/download/{id}', 'download')->name('license.download');
-            });
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{id}/edit', 'edit')->name('edit');
+            Route::put('/{id}', 'update')->name('update');
+            Route::delete('/{id}', 'destroy')->name('destroy');
+            Route::get('/download/{id}', 'download')->name('license.download');
+        });
+
+        // Product
+        Route::controller(ProductController::class)
+            ->prefix('product')
+            ->name('admin.our_product.')
+            ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{product}/edit', 'edit')->name('edit');
+            Route::put('/{product}', 'update')->name('update');
+            Route::delete('/{product}', 'destroy')->name('destroy');
+
+            // Endpoint khusus buat upload gambar TinyMCE
+            Route::post('/tinymce/upload', 'uploadTinyMce')->name('tinymce.upload');
+        });
 
     });
 
