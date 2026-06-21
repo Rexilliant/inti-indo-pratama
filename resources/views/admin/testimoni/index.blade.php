@@ -6,27 +6,6 @@
 
 @section('content')
 
-    {{-- Definisikan Array Data Mockup --}}
-    @php
-        $tableData = [
-            [
-                'tanggal' => '07/06/2026',
-                'nama' => 'Budi Santoso',
-                'provinsi' => 'Jawa Barat'
-            ],
-            [
-                'tanggal' => '05/06/2026',
-                'nama' => 'Siti Aminah',
-                'provinsi' => 'Jawa Timur'
-            ],
-            [
-                'tanggal' => '01/06/2026',
-                'nama' => 'Andi Wijaya',
-                'provinsi' => 'DKI Jakarta'
-            ]
-        ];
-    @endphp
-
     {{-- Breadcrumb --}}
     <section class="mb-5">
         <div class="mb-4 text-xl font-semibold text-gray-700">
@@ -92,7 +71,7 @@
 
         {{-- Tombol Tambah Baru --}}
         <div class="mb-4 sm:mb-5 flex items-center justify-end">
-            <a href="{{ route('admin.testimoni.create') }}"
+            <a href="{{ route('admin.testimonial.create') }}"
                 class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-[#2D2ACD] px-6 py-2 text-sm font-semibold text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
                 <span class="text-lg leading-none">+</span>
                 Tambah Baru
@@ -114,73 +93,39 @@
 
                     <tbody class="bg-gray-200 divide-y divide-gray-500">
                         {{-- Looping Data Menggunakan Foreach --}}
-                        @foreach ($tableData as $data)
+                        @forelse ($testimonials as $data)
                             <tr class="[&>td]:border-b [&>td]:border-gray-400 hover:bg-gray-100">
-                                <td class="px-6 py-4">{{ $data['tanggal'] }}</td>
-                                <td class="px-6 py-4 font-medium whitespace-normal min-w-[250px]">{{ $data['nama'] }}</td>
-                                <td class="px-6 py-4 whitespace-normal">{{ $data['provinsi'] }}</td>
+                                <td class="px-6 py-4">{{ $data->created_at->format('d/m/Y') }}</td>
+                                <td class="px-6 py-4 font-medium whitespace-normal min-w-[250px]">{{ $data->name }}</td>
+                                <td class="px-6 py-4 whitespace-normal">{{ $data->province }}</td>
                                 <td class="px-6 py-4 text-center">
-                                    <a href="{# class="text-blue-600 hover:underline">Sunting</a>
+                                    <a href="{{ route('admin.testimonial.edit', $data->id) }}"
+                                        class="text-blue-600 hover:underline">Sunting</a>
                                     <span class="mx-1">|</span>
-                                    <form action="#" class="inline-block form-delete">
+                                    <form action="{{ route('admin.testimonial.destroy', $data->id) }}" method="POST"
+                                        class="inline-block form-delete">
+                                        @csrf
+                                        @method('DELETE')
                                         <button type="submit"
                                             class="text-red-600 hover:underline cursor-pointer">Hapus</button>
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="4" class="px-6 py-4 text-center">Data tidak ditemukan</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
-
-            {{-- Pagination Mockup (Statis) --}}
-            <div
-                class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between bg-gray-200 px-4 py-3 sm:py-4 border-t border-gray-400 text-center sm:text-left">
-                <div class="text-xs sm:text-sm font-semibold text-gray-800">
-                    Showing 1–3 of 15
-                </div>
-                <div class="w-full md:w-auto overflow-x-auto flex justify-center sm:justify-start">
-                    <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-                        <a href="#"
-                            class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-400 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                            <span class="sr-only">Previous</span>
-                            <svg class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                        <a href="#" aria-current="page"
-                            class="relative z-10 inline-flex items-center bg-[#53BF6A] px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#53BF6A]">1</a>
-                        <a href="#"
-                            class="relative inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-400 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">2</a>
-                        <a href="#"
-                            class="relative hidden items-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-400 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">3</a>
-                        <span
-                            class="relative inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-400 focus:outline-offset-0">...</span>
-                        <a href="#"
-                            class="relative hidden items-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-400 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">5</a>
-                        <a href="#"
-                            class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-400 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                            <span class="sr-only">Next</span>
-                            <svg class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor"
-                                aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </nav>
-                </div>
-            </div>
-
+            {{ $testimonials->links() }}
         </div>
     </section>
 @endsection
 
 @section('addJs')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
         document.querySelectorAll('.form-delete').forEach(form => {
             form.addEventListener('submit', function(e) {
@@ -188,7 +133,7 @@
 
                 Swal.fire({
                     title: 'Anda yakin?',
-                    text: 'Data FAQ yang dihapus tidak bisa dikembalikan.',
+                    text: 'Data yang dihapus tidak bisa dikembalikan.',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#dc2626',
@@ -197,14 +142,42 @@
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire(
-                            'Terhapus!',
-                            'Data mockup berhasil dihapus. (Ini hanya visual UI)',
-                            'success'
-                        )
+                        form.submit();
                     }
                 });
             });
         });
     </script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#2D2ACD'
+            });
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#EC0E0E'
+            });
+        </script>
+    @endif
+
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'warning',
+                title: 'Validasi Gagal',
+                html: `{!! implode('<br>', $errors->all()) !!}`,
+                confirmButtonColor: '#F59E0B'
+            });
+        </script>
+    @endif
 @endsection

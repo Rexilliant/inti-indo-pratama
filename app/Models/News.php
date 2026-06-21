@@ -16,7 +16,7 @@ class News extends Model implements HasMedia
 {
     use HasFactory, SoftDeletes, LogsActivity, HasActivityRequestInfo, InteractsWithMedia;
 
-    protected $fillable = ['title', 'slug', 'hook', 'description', 'published_at'];
+    protected $fillable = ['title', 'slug', 'hook', 'content', 'published_at'];
 
     public function getActivitylogOptions(): LogOptions
     {

@@ -4,9 +4,9 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LogActivityController;
 use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 
 
 // Client Side (Front Office)
@@ -140,6 +140,7 @@ Route::prefix('admin')
                 Route::get('/{news}/edit', 'edit')->name('edit');
                 Route::put('/{news}', 'update')->name('update');
                 Route::delete('/{news}', 'destroy')->name('destroy');
+                Route::post('/upload-image', 'uploadImage')->name('upload-image');
             });
         // News Category
         Route::controller(NewsCategoryController::class)
@@ -152,6 +153,18 @@ Route::prefix('admin')
                 Route::get('/{news_category}/edit', 'edit')->name('edit');
                 Route::put('/{news_category}', 'update')->name('update');
                 Route::delete('/{news_category}', 'destroy')->name('destroy');
+            });
+        // Testimoni
+        Route::controller(TestimonialController::class)
+            ->prefix('testimonial')
+            ->name('admin.testimonial.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/', 'store')->name('store');
+                Route::get('/{testimonial}/edit', 'edit')->name('edit');
+                Route::put('/{testimonial}', 'update')->name('update');
+                Route::delete('/{testimonial}', 'destroy')->name('destroy');
             });
     });
 
