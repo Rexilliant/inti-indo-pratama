@@ -16,8 +16,9 @@
                 </p>
             </div>
 
-            {{-- Form Container: Dipastikan melebar penuh mengikuti batas max-w-screen-md --}}
-            <form action="#" method="POST" class="space-y-6 w-full">
+            {{-- Form Container: Action mengarah ke route store --}}
+            <form action="{{ route('feedback.store') }}" method="POST" class="space-y-6 w-full">
+                @csrf
 
                 {{-- Row 1: Nama Lengkap & Email (Grup 2 Kolom) --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
@@ -68,4 +69,19 @@
     </div>
 
     @include('testimoni.index')
+@endsection
+
+@section('addJs')
+    @if (session('success'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+                confirmButtonColor: '#047857',
+                confirmButtonText: 'Oke'
+            });
+        </script>
+    @endif
 @endsection
