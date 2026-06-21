@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Feedback;
 
 class FeedbackController extends Controller
 {
-    // Tampil di Admin
     public function index(Request $request)
     {
         $query = Feedback::latest();
@@ -31,7 +31,6 @@ class FeedbackController extends Controller
         return view('admin.feedback.index', compact('feedbacks'));
     }
 
-    // Simpan dari Guest
     public function store(Request $request)
     {
         $request->validate([
@@ -43,11 +42,9 @@ class FeedbackController extends Controller
 
         Feedback::create($request->all());
 
-        // Tambahin with() ini
         return back()->with('success', 'Terima kasih! Feedback Anda telah kami terima.');
     }
 
-    // Hapus dari Admin
     public function destroy($id)
     {
         Feedback::findOrFail($id)->delete();

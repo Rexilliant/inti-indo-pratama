@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\CompanyLicense;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -90,13 +91,10 @@ class LicensingController extends Controller
 
     public function download($id)
     {
-        // 1. Ambil data licensing
         $license = \App\Models\CompanyLicense::findOrFail($id);
 
-        // 2. Ambil media item-nya
         $media = $license->getFirstMedia('licenses');
 
-        // 3. Cek apakah filenya ada
         if (!$media) {
             abort(404, 'File tidak ditemukan.');
         }

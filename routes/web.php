@@ -6,11 +6,12 @@ use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\LicensingController;
+// use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\Admin\FeedbackController;
+use App\Http\Controllers\Admin\LicensingController;
 use App\Models\CompanyLicense;
 use App\Http\Controllers\Admin\ProductController;
-
+use App\Http\Controllers\FrontProductController;
 
 
 // Client Side (Front Office)
@@ -22,28 +23,9 @@ Route::get('/landing-page', function () {
     return view('landing_page.index');
 })->name('landing_page.index');
 
-Route::get('/about-us', function () {
-    return view('about_us.index');
-})->name('about_us.index');
-
 Route::get('/faqs', function () {
     return view('faqs.index');
 })->name('faqs.index');
-
-Route::get('/our-product', function () {
-    return view('our_product.index');
-})->name('our_product.index');
-
-Route::get('/product-details', function () {
-    return view('our_product.product-details');
-})->name('our_product.product-details');
-
-Route::get('/feedback', function () {
-    return view('feedback.index');
-})->name('feedback.index');
-
-Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
-
 
 Route::get('/news', function () {
     return view('news.index');
@@ -53,13 +35,42 @@ Route::get('/news-detail', function () {
     return view('news.news-detail');
 })->name('news.news-detail');
 
-// Fix Route Guest
+/*
+|--------------------------------------------------------------------------
+| Web Routes - PT Grace Indo Pratama
+|--------------------------------------------------------------------------
+*/
+
+// 1. Our Product
+Route::prefix('our-product')->name('our_product.')->controller(FrontProductController::class)->group(function () {
+    Route::get('/', 'index')->name('index');          // website.com/our-product
+    Route::get('/{id}', 'show')->name('product-details'); // website.com/our-product/{id}
+});
+
+// 2. Feedback
+Route::prefix('feedback')->name('feedback.')->group(function () {
+    Route::get('/', function () {
+        return view('feedback.index');
+    })->name('index');                                // website.com/feedback (GET)
+
+    Route::post('/', [FeedbackController::class, 'store'])->name('store'); // website.com/feedback (POST)
+});
+
+// 3. Halaman Umum / Statis
+Route::get('/about-us', function () {
+    return view('about_us.index');
+})->name('about_us.index');
+
 Route::get('/company-licensing', function () {
     $licenses = CompanyLicense::all();
     return view('company_licensing.index', compact('licenses'));
 })->name('company_licensing.index');
 
-// Admin (Back Office)
+/*
+|--------------------------------------------------------------------------
+| Admin Routes - PT Grace Indo Pratama
+|--------------------------------------------------------------------------
+*/
 
 // Testimoni Back Office
 Route::get('/admin-testimoni', function () {
@@ -93,15 +104,15 @@ Route::prefix('admin')
             ->prefix('faqs')
             ->name('admin.faqs.')
             ->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/', 'store')->name('store');
-                Route::get('/{faq}/edit', 'edit')->name('edit');
-                Route::put('/{faq}', 'update')->name('update');
-                Route::delete('/{faq}', 'destroy')->name('destroy');
-            });
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{faq}/edit', 'edit')->name('edit');
+            Route::put('/{faq}', 'update')->name('update');
+            Route::delete('/{faq}', 'destroy')->name('destroy');
+        });
 
-            
+
         // Feedback
         Route::controller(FeedbackController::class)
             ->prefix('feedback')
@@ -148,30 +159,32 @@ Route::prefix('admin')
                 Route::get('/', 'index')->name('index');
                 Route::get('/{activity}', 'show')->name('show');
             });
+
         // News
         Route::controller(NewsController::class)
             ->prefix('news')
             ->name('admin.news.')
             ->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/', 'store')->name('store');
-                Route::get('/{news}/edit', 'edit')->name('edit');
-                Route::put('/{news}', 'update')->name('update');
-                Route::delete('/{news}', 'destroy')->name('destroy');
-            });
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{news}/edit', 'edit')->name('edit');
+            Route::put('/{news}', 'update')->name('update');
+            Route::delete('/{news}', 'destroy')->name('destroy');
+        });
+
         // News Category
         Route::controller(NewsCategoryController::class)
             ->prefix('news-category')
             ->name('admin.news-category.')
             ->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/create', 'create')->name('create');
-                Route::post('/', 'store')->name('store');
-                Route::get('/{news_category}/edit', 'edit')->name('edit');
-                Route::put('/{news_category}', 'update')->name('update');
-                Route::delete('/{news_category}', 'destroy')->name('destroy');
-            });
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{news_category}/edit', 'edit')->name('edit');
+            Route::put('/{news_category}', 'update')->name('update');
+            Route::delete('/{news_category}', 'destroy')->name('destroy');
+        });
     });
 
 require __DIR__ . '/auth.php';

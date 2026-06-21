@@ -6,7 +6,6 @@
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
     <style>
-        /* Mengubah font default FilePond agar ikut font master Anda */
         .filepond--root {
             font-family: inherit;
             margin-bottom: 0;
@@ -18,7 +17,6 @@
             cursor: pointer;
             min-height: 250px !important;
 
-            /* Menggunakan Flexbox untuk menengahkan ikon */
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
@@ -34,7 +32,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Efek hover untuk panel utama (kotak dashed) */
         .filepond--root:hover .filepond--panel-root {
             border-color: #3b82f6 !important;
             /* blue-500 */
@@ -50,8 +47,6 @@
             font-weight: 700;
         }
 
-        /* Memastikan container flex kustom di dalam drop-label
-                   tidak memiliki margin bawaan yang mengganggu centering */
         .filepond--drop-label>div {
             display: flex;
             flex-direction: column;
@@ -87,19 +82,34 @@
         </div>
 
         {{-- File Upload Area --}}
-        <div class="bg-gray-200/80 p-5 rounded-xl mb-5">
-            <label class="block font-bold mb-2 text-gray-800">Dokumen Perizinan</label>
+        <div class="bg-gray-200/80 p-4 sm:p-5 rounded-xl shadow-sm border border-gray-300 mb-5">
+            <label class="block text-sm sm:text-base font-bold text-gray-800 mb-3">Dokumen Perizinan</label>
 
-            {{-- Info File Lama --}}
-            @if ($license->hasMedia('licenses'))
-                <div class="mb-4 p-3 bg-white rounded-lg border border-blue-200 text-sm text-blue-700">
-                    File saat ini: <strong>{{ $license->getFirstMedia('licenses')->file_name }}</strong>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {{-- Box Menampilkan Gambar yang Sudah Ada --}}
+                <div
+                    class="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-300 shadow-sm">
+                    <span class="text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Gambar Saat Ini</span>
+                    @if ($license->hasMedia('licenses'))
+                        <img src="{{ $license->getFirstMediaUrl('licenses', 'thumb') }}" alt="Dokumen Perizinan"
+                            class="max-h-[160px] w-auto object-contain rounded-lg border border-gray-200 p-1 shadow-sm">
+                    @else
+                        <div class="text-gray-400 text-sm flex flex-col items-center">
+                            <svg class="w-12 h-12 mb-1 text-gray-300" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 002-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <span>Tidak ada dokumen</span>
+                        </div>
+                    @endif
                 </div>
-            @endif
 
-            {{-- FilePond Input --}}
-            <div class="mt-1">
-                <input id="file-input" name="document" type="file" accept="image/png,image/jpeg,image/jpg">
+                {{-- Box Tempat Upload Baru --}}
+                <div class="md:col-span-2 flex flex-col justify-center">
+                    <input id="file-input" name="document" type="file" accept="image/png,image/jpeg,image/jpg">
+                </div>
             </div>
         </div>
 
