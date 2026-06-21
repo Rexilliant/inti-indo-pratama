@@ -1,128 +1,128 @@
 @extends('admin.layout.master')
 
-{{-- sidebar active (sesuaikan menu kamu) --}}
 @section('open-product', 'open')
 @section('menu-product', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
 
 @section('content')
-
-    {{-- Definisikan Array Data Mockup --}}
-    @php
-        $tableData = [
-            [
-                'tanggal' => '07/06/2026',
-                'id_barang' => 'BHOSEKS0001',
-                'nama_barang' => 'BHOS Ekstra',
-            ],
-            [
-                'tanggal' => '05/06/2026',
-                'id_barang' => 'BHOSBIO0002',
-                'nama_barang' => 'BHOS Bio',
-            ],
-            [
-                'tanggal' => '01/06/2026',
-                'id_barang' => 'BHOSINT0003',
-                'nama_barang' => 'BHOS Intensif',
-            ],
-        ];
-    @endphp
-
-    {{-- Breadcrumb --}}
     <section class="mb-5">
         <div class="mb-4 text-xl font-semibold text-gray-700">
             <a href="#" class="text-[#2D37CC] hover:underline text-lg sm:text-2xl font-bold">Our Product</a>
         </div>
     </section>
 
-    {{-- Top Bar / Filter Form --}}
+    {{-- Filter Form --}}
     <section class="bg-white p-4 sm:p-5 shadow border border-gray-300 rounded-lg mb-5">
-        <form action="#" method="GET" class="mb-2 sm:mb-4">
+        <form action="{{ route('admin.our_product.index') }}" method="GET" class="mb-2">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
-                <div class="flex flex-col w-full">
-                    <label class="text-xs font-semibold text-gray-700 mb-1">Pencarian</label>
-                    <input type="text" name="search" placeholder="Cari..."
-                        class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none" />
+                <div>
+                    <label class="text-xs font-semibold text-gray-700 mb-1 block">Pencarian</label>
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari..."
+                        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none bg-white" />
                 </div>
-                <div class="flex flex-col w-full">
-                    <label class="text-xs font-semibold text-gray-700 mb-1">Tanggal</label>
-                    <input type="date" name="date"
-                        class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none" />
+                <div>
+                    <label class="text-xs font-semibold text-gray-700 mb-1 block">Tanggal</label>
+                    <input type="date" name="date" value="{{ request('date') }}"
+                        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none bg-white" />
                 </div>
-                <div class="flex flex-col w-full">
-                    <label class="text-xs font-semibold text-gray-700 mb-1">Tampilkan</label>
+                <div>
+                    <label class="text-xs font-semibold text-gray-700 mb-1 block">Tampilkan</label>
                     <select name="per_page"
-                        class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none">
-                        <option value="10" selected>10 / halaman</option>
-                        <option value="25">25 / halaman</option>
+                        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none bg-white">
+                        <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10 / halaman</option>
+                        <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25 / halaman</option>
                     </select>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-2 w-full lg:col-span-1 pt-2 sm:pt-0">
-                    <button type="button"
-                        class="w-full sm:w-auto flex-1 rounded-md bg-green-600 px-5 py-2 text-sm font-semibold text-white hover:bg-green-800 transition text-center">Filter</button>
-                    <a href="#"
-                        class="w-full sm:w-auto flex-1 rounded-md bg-red-600 px-5 py-2 text-sm font-semibold text-white hover:bg-red-800 transition text-center">Reset</a>
+                <div class="flex gap-2 pt-2 sm:pt-0">
+                    <button type="submit"
+                        class="flex-1 rounded-md bg-green-600 px-5 py-2 text-sm font-semibold text-white hover:bg-green-800 transition">Filter</button>
+                    <a href="{{ route('admin.our_product.index') }}"
+                        class="flex-1 rounded-md bg-red-600 px-5 py-2 text-sm font-semibold text-white hover:bg-red-800 text-center transition">Reset</a>
                 </div>
             </div>
         </form>
     </section>
 
-    {{-- Main Content --}}
+    {{-- Table Content --}}
     <section class="bg-white p-4 sm:p-5 shadow border border-gray-300 rounded-lg mb-5">
-        <div class="mb-4 sm:mb-5 flex items-center justify-end">
-            <a href="{{ route('admin.product.create') }}"
-                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-[#2D2ACD] px-6 py-2 text-sm font-semibold text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                <span class="text-lg leading-none">+</span> Tambah Baru
+        {{-- FIXED: Membuat posisi tombol tambah responsive di mobile --}}
+        <div class="mb-5 flex justify-end">
+            <a href="{{ route('admin.our_product.create') }}"
+                class="w-full sm:w-auto text-center bg-[#2D2ACD] hover:bg-blue-800 px-6 py-2 rounded-lg text-sm font-semibold text-white shadow transition">
+                + Tambah Baru
             </a>
         </div>
 
-        <div class="overflow-hidden rounded-lg border border-gray-400 shadow-sm">
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-900 whitespace-nowrap">
-                    <thead class="bg-[#5aba6f]/70 text-gray-900">
-                        <tr class="[&>th]:border-b [&>th]:border-gray-500">
-                            <th scope="col" class="px-6 py-4 font-extrabold text-left w-48">Tanggal</th>
-                            <th scope="col" class="px-6 py-4 font-extrabold text-left">ID Barang</th>
-                            <th scope="col" class="px-6 py-4 font-extrabold text-left">Nama Barang</th>
-                            <th scope="col" class="px-6 py-4 font-extrabold text-center w-48">Aksi</th>
+        {{-- FIXED: Ditambahkan overflow-x-auto agar tabel bisa di-swipe kanan-kiri di HP tanpa ngerusak layout --}}
+        <div class="w-full overflow-x-auto rounded-lg border border-gray-400 shadow-sm">
+            <table class="w-full text-sm text-left text-gray-900 whitespace-nowrap">
+                <thead class="bg-[#5aba6f]/70">
+                    <tr>
+                        <th class="px-6 py-4 font-extrabold w-48">Tanggal</th>
+                        <th class="px-6 py-4 font-extrabold">ID Barang</th>
+                        <th class="px-6 py-4 font-extrabold">Nama Barang</th>
+                        <th class="px-6 py-4 font-extrabold text-center w-48">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-gray-200 divide-y divide-gray-500">
+                    @forelse ($products as $item)
+                        <tr class="hover:bg-gray-100 transition-colors">
+                            <td class="px-6 py-4">{{ $item->created_at->format('d/m/Y') }}</td>
+                            <td class="px-6 py-4 font-medium">{{ $item->code }}</td>
+                            <td class="px-6 py-4">{{ $item->name }}</td>
+                            <td class="px-6 py-4 text-center">
+                                <a href="{{ route('admin.our_product.edit', $item->id) }}"
+                                    class="text-blue-600 hover:underline font-medium">Sunting</a>
+                                <span class="mx-1 text-gray-400">|</span>
+                                <form action="{{ route('admin.our_product.destroy', $item->id) }}" method="POST"
+                                    class="inline-block form-delete">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:underline font-medium">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody class="bg-gray-200 divide-y divide-gray-500">
-                        @foreach ($tableData as $data)
-                            <tr class="[&>td]:border-b [&>td]:border-gray-400 hover:bg-gray-100">
-                                <td class="px-6 py-4">{{ $data['tanggal'] }}</td>
-                                <td class="px-6 py-4 font-medium">{{ $data['id_barang'] }}</td>
-                                <td class="px-6 py-4">{{ $data['nama_barang'] }}</td>
-                                <td class="px-6 py-4 text-center">
-                                    <a href="{{ route('admin.product.edit') }}"
-                                        class="text-blue-600 hover:underline">Sunting</a>
-                                    <span class="mx-1">|</span>
-                                    <form action="#" class="inline-block form-delete">
-                                        <button type="submit"
-                                            class="text-red-600 hover:underline cursor-pointer">Hapus</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="px-6 py-4 text-center bg-gray-100 text-gray-500">Belum ada data.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
+        
+        @if ($products->hasPages())
+            <div class="mt-4">{{ $products->links() }}</div>
+        @endif
     </section>
 @endsection
 
 @section('addJs')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        // Notif Sukses (Simpan/Update/Hapus)
+        @if (session('success'))
+            Swal.fire({
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                confirmButtonColor: '#53BF6A'
+            });
+        @endif
+
+        // Notif Hapus
         document.querySelectorAll('.form-delete').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 Swal.fire({
                     title: 'Anda yakin?',
-                    text: 'Data yang dihapus tidak bisa dikembalikan.',
+                    text: 'Data ini akan dihapus permanen!',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#dc2626',
-                    confirmButtonText: 'Ya, hapus'
+                    cancelButtonColor: '#6b7280',
+                    confirmButtonText: 'Ya, hapus',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) this.submit();
                 });
             });
         });

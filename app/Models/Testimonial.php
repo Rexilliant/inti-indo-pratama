@@ -15,7 +15,7 @@ class Testimonial extends Model implements HasMedia
 {
     use HasFactory, SoftDeletes, LogsActivity, HasActivityRequestInfo, InteractsWithMedia;
 
-    protected $fillable = ['name', 'description', 'country', 'province', 'city', 'comment', 'status'];
+    protected $fillable = ['name', 'country', 'province', 'city', 'comment', 'status'];
 
     public function getActivitylogOptions(): LogOptions
     {

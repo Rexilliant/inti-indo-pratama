@@ -1,12 +1,15 @@
 @extends('admin.layout.master')
 
-{{-- Sidebar active (Sesuaikan menu) --}}
-@section('open-berita', 'open')
-@section('menu-berita', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
+@section('addCss')
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+@endsection
+
+@section('open-news', 'open')
+@section('menu-news', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
 
 @section('content')
 
-    {{-- Breadcrumb --}}
     <section class="mb-6">
         <div class="text-lg sm:text-2xl font-bold">
             <span class="text-[#121212]">News</span>
@@ -15,91 +18,221 @@
         </div>
     </section>
 
-    {{-- Form Start --}}
-    <form action="#" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.news.update', $news->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
 
-        {{-- Section Metadata: Tanggal, Judul & Kategori --}}
+        <input type="hidden" name="draft_id" id="draft_id">
+
+        {{-- METADATA --}}
         <div class="bg-gray-200/80 p-4 sm:p-5 rounded-xl shadow-sm border border-gray-300 mb-5">
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                {{-- Tanggal --}}
+
+                {{-- TANGGAL --}}
                 <div>
-                    <label class="block text-sm sm:text-base font-bold text-gray-800 mb-2">Tanggal</label>
-                    <input type="date"
-                        class="w-full rounded-md border border-gray-300 px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#275931] focus:outline-none bg-white shadow-sm">
+                    <label class="block text-sm font-bold mb-2">Tanggal Published</label>
+                    <input type="datetime-local" name="published_at" value="{{ old('published_at', $news->published_at) }}"
+                        class="w-full border rounded px-4 py-2.5
+                       {{ $errors->has('published_at') ? 'border-red-500' : 'border-gray-300' }}">
+                    @error('published_at')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
-                {{-- Kategori (Dropdown) --}}
+
+                {{-- CATEGORY --}}
                 <div>
-                    <label class="block text-sm sm:text-base font-bold text-gray-800 mb-2">Kategori</label>
-                    <select
-                        class="w-full rounded-md border border-gray-300 px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#275931] focus:outline-none bg-white shadow-sm cursor-pointer">
-                        <option value="" disabled selected>Pilih Kategori...</option>
-                        <option value="inovasi-riset">Inovasi dan Riset</option>
-                        <option value="tips-pertanian">Tips Pertanian</option>
-                        <option value="kabar-perusahaan">Kabar Perusahaan</option>
+                    <label class="block text-sm font-bold mb-2">Kategori</label>
+                    <select name="category_id"
+                        class="w-full border rounded px-4 py-2.5
+                        {{ $errors->has('category_id') ? 'border-red-500' : 'border-gray-300' }}">
+
+                        @foreach ($news_categories as $category)
+                            <option value="{{ $category->id }}"
+                                {{ $news->news_categories->contains($category->id) ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
                     </select>
+
+                    @error('category_id')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
+
             </div>
 
-            {{-- Judul --}}
+            {{-- TITLE --}}
             <div class="pt-4">
-                <label class="block text-sm sm:text-base font-bold text-gray-800 mb-2">Judul</label>
-                <input type="text"
-                    class="w-full rounded-md border border-gray-300 px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#275931] focus:outline-none bg-white shadow-sm"
-                    placeholder="Masukkan judul berita...">
+                <label class="block text-sm font-bold mb-2">Judul</label>
+                <input type="text" name="title" value="{{ old('title', $news->title) }}"
+                    class="w-full border rounded px-4 py-2.5
+                   {{ $errors->has('title') ? 'border-red-500' : 'border-gray-300' }}">
+
+                @error('title')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
         </div>
 
-        {{-- Section Hook --}}
-        <div class="bg-gray-200/80 p-4 sm:p-5 rounded-xl shadow-sm border border-gray-300 mb-5">
-            <label class="block text-sm sm:text-base font-bold text-gray-800 mb-3">Hook</label>
-            <textarea rows="2"
-                class="w-full rounded-md border border-gray-300 px-4 py-3 text-sm focus:ring-2 focus:ring-[#275931] focus:outline-none bg-white shadow-sm leading-relaxed"
-                placeholder="Masukkan kalimat pemikat (hook)..."></textarea>
+        {{-- HOOK --}}
+        <div class="bg-gray-200/80 p-4 sm:p-5 rounded-xl mb-5">
+            <label class="block text-sm font-bold mb-2">Hook</label>
+
+            <textarea name="hook"
+                class="w-full border rounded px-4 py-3
+                  {{ $errors->has('hook') ? 'border-red-500' : 'border-gray-300' }}">{{ old('hook', $news->hook) }}</textarea>
+
+            @error('hook')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
-        {{-- Section Berita Lengkap --}}
-        <div class="bg-gray-200/80 p-4 sm:p-5 rounded-xl shadow-sm border border-gray-300 mb-5">
-            <label class="block text-sm sm:text-base font-bold text-gray-800 mb-3">Berita Lengkap</label>
-            <textarea rows="10"
-                class="w-full rounded-md border border-gray-300 px-4 py-3 text-sm focus:ring-2 focus:ring-[#275931] focus:outline-none bg-white shadow-sm leading-relaxed"
-                placeholder="Tuliskan berita lengkap di sini..."></textarea>
+        {{-- CONTENT (TINYMCE) --}}
+        <div class="bg-gray-200/80 p-4 sm:p-5 rounded-xl mb-5">
+            <label class="block text-sm font-bold mb-2">Berita Lengkap</label>
+
+            <textarea id="content-editor" name="content" required>
+                {!! old('content', $news->content) !!}
+            </textarea>
+            @error('content')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
-        {{-- Section Upload Gambar --}}
-        <div class="bg-gray-200/80 p-4 sm:p-5 rounded-xl shadow-sm border border-gray-300 mb-5">
-            <label class="block text-sm sm:text-base font-bold text-gray-800 mb-3">Upload Gambar</label>
-            <div
-                class="mt-2 flex justify-center rounded-lg border-2 border-dashed border-gray-400 px-6 py-12 hover:bg-gray-300/50 transition duration-200 ease-in-out cursor-pointer relative">
-                <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    accept=".png, .jpg, .jpeg">
-                <div class="text-center">
-                    <svg class="mx-auto h-10 w-10 text-gray-800 mb-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
-                    </svg>
-                    <div class="mt-4 flex text-sm leading-6 text-gray-800 justify-center font-medium">
-                        <span class="font-bold text-gray-900">Click to upload</span>
-                        <p class="pl-1">or drag and drop</p>
-                    </div>
-                    <p class="text-sm text-gray-600 mt-1">PNG, JPG, or JPEG (MAX 3 Mb)</p>
-                </div>
-            </div>
+        {{-- OLD THUMBNAIL --}}
+        <div class="bg-gray-200/80 p-4 sm:p-5 rounded-xl mb-5">
+            <label class="block text-sm font-bold mb-2">Thumbnail Saat Ini</label>
+
+            @if ($news->getFirstMediaUrl('news-thumbnail'))
+                <img src="{{ $news->getFirstMediaUrl('news-thumbnail') }}" class="w-32 h-32 object-cover rounded mb-3">
+            @endif
+
+            <input type="file" class="filepond" name="image">
+
+            @error('image')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
-        {{-- Action Buttons --}}
-        <div class="flex flex-col sm:flex-row justify-end gap-3 mt-6">
-            <a href="{{ route('admin.news.index') }}"
-                class="w-full sm:w-auto inline-flex justify-center bg-[#EC0E0E] hover:bg-red-800 text-white font-semibold py-2.5 px-8 rounded-lg shadow transition">
-                Batal
+        {{-- BUTTON --}}
+        <div class="flex justify-end gap-3 mt-6">
+
+            <a href="{{ route('admin.news.index') }}" class="bg-red-600 text-white px-6 py-2 rounded">
+                Kembali
             </a>
 
-            <a href="#"
-                class="w-full sm:w-auto inline-flex justify-center bg-[#2D2ACD] hover:bg-blue-800 text-white font-semibold py-2.5 px-8 rounded-lg shadow transition">
-                Simpan
-            </a>
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded">
+                Update
+            </button>
         </div>
+
     </form>
 
+@endsection
+
+@section('addJs')
+
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+
+    <script>
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+
+        FilePond.create(document.querySelector('.filepond'), {
+            allowMultiple: false,
+            maxFiles: 1,
+            allowImagePreview: true,
+            imagePreviewHeight: 200,
+        });
+
+        FilePond.setOptions({
+            storeAsFile: true
+        });
+    </script>
+
+    <script src="https://cdn.tiny.cloud/1/{{ env('API_TINYMCE') }}/tinymce/6/tinymce.min.js" referrerpolicy="origin">
+    </script>
+    <script>
+        tinymce.init({
+            selector: '#content-editor',
+            height: 500,
+
+            menubar: true,
+
+            plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+                'preview', 'anchor', 'searchreplace', 'visualblocks', 'code',
+                'fullscreen', 'insertdatetime', 'media', 'table', 'wordcount'
+            ],
+
+            toolbar: 'undo redo | blocks | bold italic underline | link image | code',
+
+            // 🔥 FIX UTAMA ANTI ../../../
+            relative_urls: false,
+            convert_urls: false,
+            remove_script_host: false,
+
+            images_upload_handler: function(blobInfo) {
+
+                let formData = new FormData();
+                formData.append('file', blobInfo.blob());
+                formData.append('draft_id', document.getElementById('draft_id').value || '');
+
+                return fetch('/admin/news/upload-image', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json'
+                        },
+                        body: formData
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById('draft_id').value = data.draft_id;
+                        return data.location; // FULL URL
+                    });
+            },
+
+            setup: function(editor) {
+                editor.on('change', function() {
+                    editor.save();
+                });
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#2D2ACD'
+            });
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#EC0E0E'
+            });
+        </script>
+    @endif
+
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'warning',
+                title: 'Validasi Gagal',
+                html: `{!! implode('<br>', $errors->all()) !!}`,
+                confirmButtonColor: '#F59E0B'
+            });
+        </script>
+    @endif
 @endsection

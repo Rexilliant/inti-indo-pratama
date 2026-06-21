@@ -21,4 +21,10 @@ class CompanyLicense extends Model implements HasMedia
     {
         return LogOptions::defaults()->logAll()->logOnlyDirty();
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('licenses')
+            ->singleFile(); // Biar setiap license cuma punya 1 gambar/file utama
+    }
 }
