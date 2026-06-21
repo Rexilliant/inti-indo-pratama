@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('hook');
-            $table->text('description');
+            $table->text('content');
             $table->dateTime('published_at');
             $table->timestamps();
             $table->softDeletes();

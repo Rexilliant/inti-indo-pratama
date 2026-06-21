@@ -2,12 +2,16 @@
 
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LogActivityController;
+use App\Http\Controllers\Admin\NewsCategoryController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\LicensingController;
 use App\Models\CompanyLicense;
 use App\Http\Controllers\Admin\ProductController;
+
+
 
 // Client Side (Front Office)
 Route::get('/', function () {
@@ -71,19 +75,6 @@ Route::get('/admin-testimoni-edit', function () {
 })->name('admin.testimoni.edit');
 
 
-// Our News
-Route::get('/admin-news', function () {
-    return view('admin.news.index');
-})->name('admin.news.index');
-
-Route::get('/admin-news.create', function () {
-    return view('admin.news.create');
-})->name('admin.news.create');
-
-Route::get('/admin-news.edit', function () {
-    return view('admin.news.edit');
-})->name('admin.news.edit');
-
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })
@@ -98,20 +89,19 @@ Route::prefix('admin')
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
         // FaQs
-        Route::controller(FaqController::class)->prefix('faqs')->name('admin.faqs.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{faq}/edit', 'edit')->name('edit');
-            Route::put('/{faq}', 'update')->name('update');
-            Route::delete('/{faq}', 'destroy')->name('destroy');
-        });
-        // Log Activity
-        Route::controller(LogActivityController::class)->prefix('log-activity')->name('admin.log-activity.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/{activity}', 'show')->name('show');
-        });
+        Route::controller(FaqController::class)
+            ->prefix('faqs')
+            ->name('admin.faqs.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/', 'store')->name('store');
+                Route::get('/{faq}/edit', 'edit')->name('edit');
+                Route::put('/{faq}', 'update')->name('update');
+                Route::delete('/{faq}', 'destroy')->name('destroy');
+            });
 
+            
         // Feedback
         Route::controller(FeedbackController::class)
             ->prefix('feedback')
@@ -151,6 +141,37 @@ Route::prefix('admin')
             Route::post('/tinymce/upload', 'uploadTinyMce')->name('tinymce.upload');
         });
 
+        Route::controller(LogActivityController::class)
+            ->prefix('log-activity')
+            ->name('admin.log-activity.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/{activity}', 'show')->name('show');
+            });
+        // News
+        Route::controller(NewsController::class)
+            ->prefix('news')
+            ->name('admin.news.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/', 'store')->name('store');
+                Route::get('/{news}/edit', 'edit')->name('edit');
+                Route::put('/{news}', 'update')->name('update');
+                Route::delete('/{news}', 'destroy')->name('destroy');
+            });
+        // News Category
+        Route::controller(NewsCategoryController::class)
+            ->prefix('news-category')
+            ->name('admin.news-category.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/', 'store')->name('store');
+                Route::get('/{news_category}/edit', 'edit')->name('edit');
+                Route::put('/{news_category}', 'update')->name('update');
+                Route::delete('/{news_category}', 'destroy')->name('destroy');
+            });
     });
 
 require __DIR__ . '/auth.php';
