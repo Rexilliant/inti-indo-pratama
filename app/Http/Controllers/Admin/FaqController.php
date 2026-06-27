@@ -8,15 +8,31 @@ use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $faqs = Faq::latest()->get();
-        return view('admin.faqs.index', compact('faqs'));
+        $query = Faq::query();
+
+        if ($request->has('question') && $request->question != '') {
+            $query->where('question', 'like', '%' . $request->question . '%');
+        }
+
+        if ($request->has('date') && $request->date != '') {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+
+        $faqs = $query->latest()->paginate($request->get('per_page', 10));
+        $statuses = FAQ::distinct()->pluck('status');
+        return view('admin.faqs.index', compact('faqs', 'statuses'));
     }
 
     public function create()
     {
-        return view('admin.faqs.create');
+        $statuses = FAQ::getStatus();
+        return view('admin.faqs.create', compact('statuses'));
     }
 
     public function store(Request $request)
@@ -39,8 +55,8 @@ class FaqController extends Controller
     {
         $request->validate([
             'question' => 'required',
-            'answer'   => 'required',
-            'status'   => 'required',
+            'answer' => 'required',
+            'status' => 'required',
         ]);
         $faq->update($request->only('question', 'answer', 'status'));
         return redirect()->route('admin.faqs.index')->with('success', 'Faq updated successfully');

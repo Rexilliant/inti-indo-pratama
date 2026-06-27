@@ -1,18 +1,19 @@
 <?php
 
+use App\Http\Controllers\Admin\ErorLogController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\FeedbackController;
+use App\Http\Controllers\Admin\LicensingController;
 use App\Http\Controllers\Admin\LogActivityController;
 use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\TestimonialController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\Admin\FeedbackController;
-use App\Http\Controllers\Admin\LicensingController;
-use App\Models\CompanyLicense;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\FrontProductController;
+use App\Http\Controllers\ProfileController;
+use App\Models\CompanyLicense;
+use Illuminate\Support\Facades\Route;
 
 
 // Client Side (Front Office)
@@ -43,19 +44,24 @@ Route::get('/news-detail', function () {
 */
 
 // 1. Our Product
-Route::prefix('our-product')->name('our_product.')->controller(FrontProductController::class)->group(function () {
-    Route::get('/', 'index')->name('index');          // website.com/our-product
-    Route::get('/{id}', 'show')->name('product-details'); // website.com/our-product/{id}
-});
+Route::prefix('our-product')
+    ->name('our_product.')
+    ->controller(FrontProductController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index'); // website.com/our-product
+        Route::get('/{id}', 'show')->name('product-details'); // website.com/our-product/{id}
+    });
 
 // 2. Feedback
-Route::prefix('feedback')->name('feedback.')->group(function () {
-    Route::get('/', function () {
-        return view('feedback.index');
-    })->name('index');                                // website.com/feedback (GET)
+Route::prefix('feedback')
+    ->name('feedback.')
+    ->group(function () {
+        Route::get('/', function () {
+            return view('feedback.index');
+        })->name('index'); // website.com/feedback (GET)
 
-    Route::post('/', [FeedbackController::class, 'store'])->name('store'); // website.com/feedback (POST)
-});
+        Route::post('/', [FeedbackController::class, 'store'])->name('store'); // website.com/feedback (POST)
+    });
 
 // 3. Halaman Umum / Statis
 Route::get('/about-us', function () {
@@ -86,7 +92,6 @@ Route::get('/admin-testimoni-edit', function () {
     return view('admin.testimoni.edit');
 })->name('admin.testimoni.edit');
 
-
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })
@@ -105,53 +110,52 @@ Route::prefix('admin')
             ->prefix('faqs')
             ->name('admin.faqs.')
             ->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{faq}/edit', 'edit')->name('edit');
-            Route::put('/{faq}', 'update')->name('update');
-            Route::delete('/{faq}', 'destroy')->name('destroy');
-        });
-
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/', 'store')->name('store');
+                Route::get('/{faq}/edit', 'edit')->name('edit');
+                Route::put('/{faq}', 'update')->name('update');
+                Route::delete('/{faq}', 'destroy')->name('destroy');
+            });
 
         // Feedback
         Route::controller(FeedbackController::class)
             ->prefix('feedback')
             ->name('admin.feedback.')
             ->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::delete('/{id}', 'destroy')->name('destroy');
-        });
+                Route::get('/', 'index')->name('index');
+                Route::delete('/{id}', 'destroy')->name('destroy');
+            });
 
         // Company Licensing
         Route::controller(LicensingController::class)
             ->prefix('licensing')
             ->name('admin.company_licensing.')
             ->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{id}/edit', 'edit')->name('edit');
-            Route::put('/{id}', 'update')->name('update');
-            Route::delete('/{id}', 'destroy')->name('destroy');
-            Route::get('/download/{id}', 'download')->name('license.download');
-        });
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/', 'store')->name('store');
+                Route::get('/{id}/edit', 'edit')->name('edit');
+                Route::put('/{id}', 'update')->name('update');
+                Route::delete('/{id}', 'destroy')->name('destroy');
+                Route::get('/download/{id}', 'download')->name('license.download');
+            });
 
         // Product
         Route::controller(ProductController::class)
             ->prefix('product')
             ->name('admin.our_product.')
             ->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{product}/edit', 'edit')->name('edit');
-            Route::put('/{product}', 'update')->name('update');
-            Route::delete('/{product}', 'destroy')->name('destroy');
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/', 'store')->name('store');
+                Route::get('/{product}/edit', 'edit')->name('edit');
+                Route::put('/{product}', 'update')->name('update');
+                Route::delete('/{product}', 'destroy')->name('destroy');
 
-            // Endpoint khusus buat upload gambar TinyMCE
-            Route::post('/tinymce/upload', 'uploadTinyMce')->name('tinymce.upload');
-        });
+                // Endpoint khusus buat upload gambar TinyMCE
+                Route::post('/tinymce/upload', 'uploadTinyMce')->name('tinymce.upload');
+            });
 
         Route::controller(LogActivityController::class)
             ->prefix('log-activity')
@@ -198,6 +202,15 @@ Route::prefix('admin')
                 Route::put('/{testimonial}', 'update')->name('update');
                 Route::delete('/{testimonial}', 'destroy')->name('destroy');
             });
+        Route::controller(ErorLogController::class)
+            ->prefix('error-log')
+            ->name('admin.error-log.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/{error_log}', 'show')->name('show');
+                Route::delete('/delete-last-30', 'deleteLast30')->name('delete-last-30');
+            });
+        
     });
 
 require __DIR__ . '/auth.php';

@@ -151,15 +151,13 @@
         });
     </script>
 
-    <script src="https://cdn.tiny.cloud/1/{{ env('API_TINYMCE') }}/tinymce/6/tinymce.min.js" referrerpolicy="origin">
-    </script>
+    <script src="{{ asset('vendor/tinymce/tinymce.min.js') }}"></script>
     <script>
         tinymce.init({
             selector: '#content-editor',
             height: 500,
-
+            license_key: 'gpl',
             menubar: true,
-
             plugins: [
                 'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
                 'preview', 'anchor', 'searchreplace', 'visualblocks', 'code',

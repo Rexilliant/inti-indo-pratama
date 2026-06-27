@@ -128,17 +128,8 @@
                     </tbody>
                 </table>
             </div>
-
             {{-- Pagination --}}
-            <div
-                class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between bg-gray-200 px-4 py-3 sm:py-4 border-t border-gray-400">
-                <div class="text-xs sm:text-sm font-semibold text-gray-800">
-                    Showing {{ $logs->firstItem() }}–{{ $logs->lastItem() }} of {{ $logs->total() }}
-                </div>
-                <div>
-                    {{ $logs->appends(request()->query())->links() }}
-                </div>
-            </div>
+            {{ $logs->links() }}
         </div>
     </section>
 @endsection
