@@ -12,10 +12,33 @@ use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $news = News::paginate(10);
-        return view('admin.news.index', compact('news'));
+        $query = News::query();
+
+        // Filter judul
+        if ($request->filled('title')) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
+
+        // Filter tanggal
+        if ($request->filled('date')) {
+            $query->whereDate('published_at', $request->date);
+        }
+
+        // Filter kategori
+        if ($request->filled('category_id')) {
+            $query->whereHas('news_categories', function ($q) use ($request) {
+                $q->where('news_categories.id', $request->category_id);
+            });
+        }
+
+        // Pagination
+        $perPage = $request->get('per_page', 10);
+        $news = $query->orderBy('published_at', 'desc')->paginate($perPage)->appends($request->all());
+        $categories = NewsCategory::all();
+
+        return view('admin.news.index', compact('news', 'categories'));
     }
 
     public function create()

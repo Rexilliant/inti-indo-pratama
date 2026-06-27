@@ -5,13 +5,22 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class NewsCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $news_categories = NewsCategory::all();
+        $query = NewsCategory::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        $perPage = $request->get('per_page', 10);
+        $news_categories = $query->orderBy('created_at', 'desc')->paginate($perPage)->appends($request->all());
+
         return view('admin.news-category.index', compact('news_categories'));
     }
 

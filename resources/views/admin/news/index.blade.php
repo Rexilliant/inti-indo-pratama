@@ -15,28 +15,42 @@
 
     {{-- Top Bar / Filter Form --}}
     <section class="bg-white p-4 sm:p-5 shadow border border-gray-300 rounded-lg mb-5">
-        <form action="#" method="GET" class="mb-2 sm:mb-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+        <form action="{{ route('admin.news.index') }}" method="GET" class="mb-2 sm:mb-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+                {{-- Judul --}}
                 <div class="flex flex-col w-full">
-                    <label class="text-xs font-semibold text-gray-700 mb-1">Pencarian</label>
-                    <input type="text" name="search" placeholder="Cari..."
+                    <label class="text-xs font-semibold text-gray-700 mb-1">Judul Berita</label>
+                    <input type="text" name="title" value="{{ request('title') }}" placeholder="Cari Judul..."
                         class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none" />
                 </div>
                 <div class="flex flex-col w-full">
-                    <label class="text-xs font-semibold text-gray-700 mb-1">Tanggal</label>
-                    <input type="date" name="date"
+                    <label class="text-xs font-semibold text-gray-700 mb-1">Tanggal Publish</label>
+                    <input type="date" name="date" value="{{ request('date') }}"
                         class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none" />
+                </div>
+                {{-- Kategori --}}
+                <div class="flex flex-col w-full">
+                    <label class="text-xs font-semibold text-gray-700 mb-1">Kategori</label>
+                    <select name="category_id" value="{{ request('category_id') }}"
+                        class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none">
+                        <option value="" selected>Pilih Kategori</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}"
+                                {{ request('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="flex flex-col w-full">
                     <label class="text-xs font-semibold text-gray-700 mb-1">Tampilkan</label>
-                    <select name="per_page"
+                    <select name="per_page" value="{{ request('per_page') }}"
                         class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none">
-                        <option value="10" selected>10 / halaman</option>
-                        <option value="25">25 / halaman</option>
+                        <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10 / halaman</option>
+                        <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25 / halaman</option>
                     </select>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-2 w-full lg:col-span-1 pt-2 sm:pt-0">
-                    <button type="button"
+                    <button type="submit"
                         class="w-full sm:w-auto flex-1 rounded-md bg-green-600 px-5 py-2 text-sm font-semibold text-white hover:bg-green-800 transition text-center">Filter</button>
                     <a href="#"
                         class="w-full sm:w-auto flex-1 rounded-md bg-red-600 px-5 py-2 text-sm font-semibold text-white hover:bg-red-800 transition text-center">Reset</a>
@@ -59,14 +73,14 @@
                 <table class="w-full text-sm text-left text-gray-900 whitespace-nowrap">
                     <thead class="bg-[#5aba6f]/70 text-gray-900">
                         <tr class="[&>th]:border-b [&>th]:border-gray-500">
-                            <th scope="col" class="px-6 py-4 font-extrabold text-left w-48">Tanggal</th>
+                            <th scope="col" class="px-6 py-4 font-extrabold text-left w-48">Tanggal Publish</th>
                             <th scope="col" class="px-6 py-4 font-extrabold text-left">Judul Berita</th>
                             <th scope="col" class="px-6 py-4 font-extrabold text-left">Kategori</th>
                             <th scope="col" class="px-6 py-4 font-extrabold text-center w-48">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="bg-gray-200 divide-y divide-gray-500">
-                        @foreach ($news as $data)
+                        @forelse ($news as $data)
                             <tr class="[&>td]:border-b [&>td]:border-gray-400 hover:bg-gray-100">
                                 <td class="px-6 py-4">{{ $data->published_at }}</td>
                                 <td class="px-6 py-4 font-medium">{{ $data->title }}</td>
@@ -91,7 +105,11 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="4" class="px-6 py-4 text-center">Tidak ada berita</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

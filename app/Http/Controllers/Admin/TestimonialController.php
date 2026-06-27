@@ -9,10 +9,33 @@ use Illuminate\Support\Facades\DB;
 
 class TestimonialController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $testimonials = Testimonial::latest()->paginate(10);
-        return view('admin.testimoni.index', compact('testimonials'));
+        $query = Testimonial::query();
+
+        // Filter nama
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        // Filter tanggal
+        if ($request->filled('date')) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        // Filter provinsi
+        if ($request->filled('province')) {
+            $query->where('province', $request->province);
+        }
+
+        // Pagination
+        $perPage = $request->get('per_page', 10);
+
+        $testimonials = $query->orderBy('created_at', 'desc')->paginate($perPage)->appends($request->all()); // penting biar filter tidak hilang saat pagination
+
+        $provinces = Testimonial::select('province')->whereNotNull('province')->where('province', '!=', '')->distinct()->orderBy('province')->pluck('province');
+
+        return view('admin.testimoni.index', compact('testimonials', 'provinces'));
     }
 
     public function create()

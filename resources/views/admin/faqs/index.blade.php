@@ -15,15 +15,15 @@
 
     {{-- Top Bar / Filter Form --}}
     <section class="bg-white p-4 sm:p-5 shadow border border-gray-300 rounded-lg mb-5">
-        <form action="#" method="GET" class="mb-2 sm:mb-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+        <form action="{{ route( 'admin.faqs.index') }}" method="GET" class="mb-2 sm:mb-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
 
                 {{-- Search Pertanyaan --}}
                 <div class="flex flex-col w-full">
                     <label class="text-xs font-semibold text-gray-700 mb-1">
                         Pencarian Pertanyaan
                     </label>
-                    <input type="text" name="search" placeholder="Cari pertanyaan..."
+                    <input type="text" name="question" value="{{ request('question') }}" placeholder="Cari pertanyaan..."
                         class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none" />
                 </div>
 
@@ -32,10 +32,23 @@
                     <label class="text-xs font-semibold text-gray-700 mb-1">
                         Tanggal
                     </label>
-                    <input type="date" name="date"
+                    <input type="date" name="date" value="{{ request('date') }}"
                         class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none" />
                 </div>
-
+                {{-- Status --}}
+                <div class="flex flex-col w-full">
+                    <label class="text-xs font-semibold text-gray-700 mb-1">
+                        Status
+                    </label>
+                    <select name="status" id="status"
+                        class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none">
+                        <option value="" selected>Semua</option>
+                        @foreach ($statuses as $status)
+                            <option value="{{ $status }}" {{ request('status') == $status ? 'selected' : '' }}>
+                                {{ $status }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 {{-- Per Page --}}
                 <div class="flex flex-col w-full">
                     <label class="text-xs font-semibold text-gray-700 mb-1">
@@ -43,16 +56,16 @@
                     </label>
                     <select name="per_page"
                         class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-[#5aba6f] focus:outline-none">
-                        <option value="10" selected>10 / halaman</option>
-                        <option value="25">25 / halaman</option>
-                        <option value="50">50 / halaman</option>
-                        <option value="100">100 / halaman</option>
+                        <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10 / halaman</option>
+                        <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25 / halaman</option>
+                        <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50 / halaman</option>
+                        <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100 / halaman</option>
                     </select>
                 </div>
 
                 {{-- Action Buttons --}}
                 <div class="flex flex-col sm:flex-row gap-2 w-full lg:col-span-1 pt-2 sm:pt-0">
-                    <button type="button"
+                    <button type="submit"
                         class="w-full sm:w-auto flex-1 rounded-md bg-green-600 px-5 py-2 text-sm font-semibold text-white hover:bg-green-800 transition text-center">
                         Filter
                     </button>
@@ -101,7 +114,8 @@
                                     <a href="{{ route('admin.faqs.edit', $faq->id) }}"
                                         class="text-blue-600 hover:underline">Sunting</a>
                                     <span class="mx-1">|</span>
-                                    <form action="{{ route('admin.faqs.destroy', $faq->id) }}" method="POST" class="inline-block form-delete">
+                                    <form action="{{ route('admin.faqs.destroy', $faq->id) }}" method="POST"
+                                        class="inline-block form-delete">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
@@ -118,9 +132,10 @@
                     </tbody>
                 </table>
             </div>
+            {{ $faqs->links() }}
 
             {{-- Pagination Mockup (Statis) --}}
-            <div
+            {{-- <div
                 class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between bg-gray-200 px-4 py-3 sm:py-4 border-t border-gray-400 text-center sm:text-left">
                 <div class="text-xs sm:text-sm font-semibold text-gray-800">
                     Showing 1–3 of 15
@@ -157,7 +172,7 @@
                         </a>
                     </nav>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </section>
