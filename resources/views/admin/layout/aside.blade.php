@@ -21,7 +21,7 @@
             [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 
         {{-- Dashboard --}}
-        <a href="#"
+        <a href="{{ route('admin.dashboard.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-dashboard')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -187,7 +187,7 @@
             [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 
         {{-- Dashboard --}}
-        <a href="#"
+        <a href="{{ route('admin.dashboard.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-dashboard')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
@@ -279,7 +279,7 @@
             </span>
             <span class="font-semibold text-[14px]">FaQs</span>
         </a>
-         <a href="{{ route('admin.log-activity.index') }}"
+        <a href="{{ route('admin.log-activity.index') }}"
             class="cursor-pointer flex gap-3 items-center px-3 py-2 rounded-xl duration-300 ease-in-out hover:bg-slate-100 @yield('menu-log-activity')">
             <span class="h-8 w-8 rounded-full bg-slate-200 grid place-items-center">
                 <svg class="fill-slate-600" width="18" height="18" viewBox="0 0 24 24">
