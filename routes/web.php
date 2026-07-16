@@ -1,13 +1,14 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ErorLogController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\LicensingController;
 use App\Http\Controllers\Admin\LogActivityController;
 use App\Http\Controllers\Admin\NewsCategoryController;
-use App\Http\Controllers\Admin\NewsController;
 // use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\FrontProductController;
@@ -141,6 +142,13 @@ Route::prefix('admin')
                 Route::get('/download/{id}', 'download')->name('license.download');
             });
 
+        // Dashboard
+        Route::controller(DashboardController::class)
+            ->prefix('dashboard')
+            ->name('admin.dashboard.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+            });
         // Product
         Route::controller(ProductController::class)
             ->prefix('product')
@@ -210,7 +218,6 @@ Route::prefix('admin')
                 Route::get('/{error_log}', 'show')->name('show');
                 Route::delete('/delete-last-30', 'deleteLast30')->name('delete-last-30');
             });
-        
     });
 
 require __DIR__ . '/auth.php';
