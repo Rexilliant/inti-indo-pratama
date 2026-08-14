@@ -25,7 +25,7 @@
 
 @section('content')
     {{-- Hero Section --}}
-    <div class="w-full bg-[#EEFBF5]">
+    <div class="w-full bg-[#EEFBF5] pt-20">
         <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#047857]">
                 {{ $product->name }}
