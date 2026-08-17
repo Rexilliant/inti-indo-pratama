@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Section Hero: Perizinan & Legalitas Usaha --}}
-    <div class="relative flex min-h-[500px] w-full items-center bg-[#ECFDF5] bg-cover bg-left lg:bg-center bg-no-repeat md:min-h-[700px] object-right overflow-hidden"
+    <div class="pt-20 lg:pt-8 relative flex min-h-[500px] w-full items-center bg-[#ECFDF5] bg-cover bg-left lg:bg-center bg-no-repeat md:min-h-[700px] object-right overflow-hidden"
         style="background-image: url('{{ asset('assets_img/bg-licensing.png') }}');" aria-label="petani modern">
 
         <div

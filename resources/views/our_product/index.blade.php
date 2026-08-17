@@ -6,8 +6,8 @@
         <section class="mx-auto max-w-screen-xl px-0 lg:px-8">
 
             {{-- Header Title --}}
-            <div class="text-center mb-10 md:mb-14 flex flex-col items-center gap-3 md:gap-4 px-4 sm:px-6 lg:px-0">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
+            <div class="pt-20 lg:pt-8 text-center mb-10 md:mb-14 flex flex-col items-center gap-3 md:gap-4 px-4 sm:px-6 lg:px-0">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight ">
                     <span class="text-[#047857]">Produk Unggulan</span> Kami
                 </h2>
                 <p class="text-base sm:text-lg text-gray-600 max-w-2xl leading-relaxed">
