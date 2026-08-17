@@ -16,6 +16,14 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        \Illuminate\Support\Facades\View::composer('faqs.faqs', function ($view) {
+            $view->with('faqs', \App\Models\Faq::where('status', 'published')->get());
+        });
+
+        \Illuminate\Support\Facades\View::composer('testimoni.index', function ($view) {
+            $view->with('testimonials', \App\Models\Testimonial::where('status', 'published')->latest()->get());
+        });
+
         Activity::saving(function (Activity $activity) {
             if (app()->runningInConsole()) {
                 $requestInfo = [

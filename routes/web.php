@@ -14,29 +14,21 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\FrontProductController;
 use App\Http\Controllers\ProfileController;
 use App\Models\CompanyLicense;
+use App\Models\Product;
+use App\Models\News;
+use App\Models\Faq;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Route;
 
 
 // Client Side (Front Office)
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(\App\Http\Controllers\PageController::class)->group(function () {
+    Route::get('/', 'welcome');
+    Route::get('/landing-page', 'landingPage')->name('landing_page.index');
+    Route::get('/faqs', 'faqs')->name('faqs.index');
+    Route::get('/news', 'news')->name('news.index');
+    Route::get('/news/{slug}', 'newsDetail')->name('news.news-detail');
 });
-
-Route::get('/landing-page', function () {
-    return view('landing_page.index');
-})->name('landing_page.index');
-
-Route::get('/faqs', function () {
-    return view('faqs.index');
-})->name('faqs.index');
-
-Route::get('/news', function () {
-    return view('news.index');
-})->name('news.index');
-
-Route::get('/news-detail', function () {
-    return view('news.news-detail');
-})->name('news.news-detail');
 
 /*
 |--------------------------------------------------------------------------
@@ -50,29 +42,23 @@ Route::prefix('our-product')
     ->controller(FrontProductController::class)
     ->group(function () {
         Route::get('/', 'index')->name('index'); // website.com/our-product
-        Route::get('/{id}', 'show')->name('product-details'); // website.com/our-product/{id}
+        Route::get('/{slug}', 'show')->name('product-details'); // website.com/our-product/{slug}
     });
 
 // 2. Feedback
 Route::prefix('feedback')
     ->name('feedback.')
     ->group(function () {
-        Route::get('/', function () {
-            return view('feedback.index');
-        })->name('index'); // website.com/feedback (GET)
+        Route::get('/', [\App\Http\Controllers\PageController::class, 'feedback'])->name('index'); // website.com/feedback (GET)
 
         Route::post('/', [FeedbackController::class, 'store'])->name('store'); // website.com/feedback (POST)
     });
 
 // 3. Halaman Umum / Statis
-Route::get('/about-us', function () {
-    return view('about_us.index');
-})->name('about_us.index');
-
-Route::get('/company-licensing', function () {
-    $licenses = CompanyLicense::all();
-    return view('company_licensing.index', compact('licenses'));
-})->name('company_licensing.index');
+Route::controller(\App\Http\Controllers\PageController::class)->group(function () {
+    Route::get('/about-us', 'aboutUs')->name('about_us.index');
+    Route::get('/company-licensing', 'companyLicensing')->name('company_licensing.index');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -81,21 +67,11 @@ Route::get('/company-licensing', function () {
 */
 
 // Testimoni Back Office
-Route::get('/admin-testimoni', function () {
-    return view('admin.testimoni.index');
-})->name('admin.testimoni.index');
+Route::get('/admin-testimoni', [\App\Http\Controllers\PageController::class, 'adminTestimoni'])->name('admin.testimoni.index');
+Route::get('/admin-testimoni-create', [\App\Http\Controllers\PageController::class, 'adminTestimoniCreate'])->name('admin.testimoni.create');
+Route::get('/admin-testimoni-edit', [\App\Http\Controllers\PageController::class, 'adminTestimoniEdit'])->name('admin.testimoni.edit');
 
-Route::get('/admin-testimoni-create', function () {
-    return view('admin.testimoni.create');
-})->name('admin.testimoni.create');
-
-Route::get('/admin-testimoni-edit', function () {
-    return view('admin.testimoni.edit');
-})->name('admin.testimoni.edit');
-
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})
+Route::get('/admin/dashboard', [\App\Http\Controllers\PageController::class, 'adminDashboard'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 

@@ -12,7 +12,7 @@
             class="absolute bottom-0 right-0 w-96 h-96 bg-[#D1F4E0] rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform translate-x-1/3 translate-y-1/3 pointer-events-none">
         </div>
 
-        <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 relative z-10 py-15">
+        <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 relative z-10 py-24">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
                 {{-- Kolom Kiri: Konten Teks & Badge --}}

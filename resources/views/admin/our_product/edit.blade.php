@@ -70,6 +70,17 @@
         @csrf
         @method('PUT')
 
+        {{-- Display Validation Errors --}}
+        @if ($errors->any())
+            <div class="bg-red-50 text-red-600 p-4 rounded-xl mb-5 border border-red-200">
+                <ul class="list-disc pl-5">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         {{-- Section Input ID & Nama Barang --}}
         <div class="bg-gray-200/80 p-4 sm:p-5 rounded-xl shadow-sm border border-gray-300 mb-5">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -223,6 +234,8 @@
             `;
 
                 FilePond.create(inputElement, {
+                    name: 'image',
+                    allowMultiple: false,
                     storeAsFile: true,
                     acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
                     maxFileSize: '3MB',

@@ -30,9 +30,30 @@ class Product extends Model implements HasMedia
 
         static::creating(function ($product) {
             if (empty($product->slug)) {
-                $product->slug = Str::slug($product->name);
+                $product->slug = static::generateUniqueSlug($product->name);
             }
         });
+
+        static::updating(function ($product) {
+            if ($product->isDirty('name')) {
+                $product->slug = static::generateUniqueSlug($product->name, $product->id);
+            }
+        });
+    }
+
+    public static function generateUniqueSlug($name, $ignoreId = null)
+    {
+        $slug = Str::slug($name);
+        $base = $slug;
+        $i = 1;
+
+        while (static::where('slug', $slug)->when($ignoreId, function ($query, $ignoreId) {
+            return $query->where('id', '!=', $ignoreId);
+        })->exists()) {
+            $slug = $base . '-' . $i++;
+        }
+
+        return $slug;
     }
     public function getActivitylogOptions(): LogOptions
     {
