@@ -77,7 +77,7 @@
                     </div>
 
                     {{-- action button --}}
-                    <a href="#"
+                    <a href="{{ route('about_us.index') }}"
                         class="mt-2 inline-flex w-max items-center gap-2 text-sm sm:text-base font-semibold text-[#0045B4] transition hover:opacity-80">
                         Lihat Selengkapnya
                         <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" stroke-width="2"
@@ -122,8 +122,8 @@
             <div
                 class="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-8 hide-scrollbar lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:pb-0">
 
-                {{-- Loop simulasi produk --}}
-                @for ($i = 0; $i < 6; $i++)
+                {{-- Loop data produk --}}
+                @foreach ($products as $product)
                     {{-- 
                         Card Item:
                         - Mobile: lebar 85% dari layar, posisi snap di tengah
@@ -136,15 +136,15 @@
 
                         {{-- gambar produk --}}
                         <div class="w-full bg-gray-100 relative pt-[75%]">
-                            <img src="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop"
-                                alt="Produk Pupuk" class="absolute inset-0 w-full h-full object-cover">
+                            <img src="{{ $product->getFirstMediaUrl('product_images', 'preview') ?: 'https://placehold.co/800x800/ECFDF5/047857?text=No+Image+Available' }}"
+                                alt="{{ $product->name }}" class="absolute inset-0 w-full h-full object-cover">
                         </div>
 
                         {{-- detail produk --}}
                         <div class="p-6 sm:p-8 flex flex-col justify-between flex-grow gap-2">
-                            <h3 class="text-lg font-bold text-gray-900">BHOS Teknologi</h3>
+                            <h3 class="text-lg font-bold text-gray-900">{{ $product->name }}</h3>
 
-                            <a href="#"
+                            <a href="{{ route('our_product.product-details', $product->slug) }}"
                                 class="inline-flex w-max items-center gap-1 text-sm font-semibold text-[#EA580C] transition hover:opacity-80">
                                 Baca Selengkapnya
                                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -155,13 +155,13 @@
                             </a>
                         </div>
                     </div>
-                @endfor
+                @endforeach
 
             </div>
 
             {{-- tombol view more --}}
             <div class="mt-8 lg:mt-12 flex justify-center">
-                <a href="#"
+                <a href="{{ route('our_product.index') }}"
                     class="inline-flex items-center justify-center rounded-lg bg-[#EA580C] px-8 py-4 text-sm sm:text-base font-semibold text-white shadow-md transition hover:bg-[#c24106] focus:outline-none focus:ring-2 focus:ring-[#EA580C] focus:ring-offset-2 focus:ring-offset-[#EEFBF5]">
                     View More
                 </a>
@@ -192,17 +192,17 @@
             <div
                 class="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-8 hide-scrollbar lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:pb-0">
 
-                {{-- Loop simulasi 6 berita --}}
-                @for ($i = 0; $i < 6; $i++)
-                    <div
+                {{-- Loop data berita --}}
+                @foreach ($news as $item)
+                    <a href="{{ route('news.news-detail', $item->slug) }}"
                         class="flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-md 
-                                w-[85%] shrink-0 snap-center sm:w-[45%] lg:w-auto lg:shrink lg:snap-align-none cursor-pointer group">
+                                w-[85%] shrink-0 snap-center sm:w-[45%] lg:w-auto lg:shrink lg:snap-align-none cursor-pointer group focus:outline-none focus:ring-2 focus:ring-[#047857]">
 
                         {{-- gambar berita --}}
                         <div class="w-full bg-gray-100 relative pt-[65%] overflow-hidden">
                             {{-- Efek zoom tipis saat card di-hover (opsional, untuk UX yang lebih baik) --}}
-                            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=800&auto=format&fit=crop"
-                                alt="Berita BHOS Teknologi"
+                            <img src="{{ $item->getFirstMediaUrl('news-thumbnail') ?: 'https://placehold.co/800x800/ECFDF5/047857?text=No+Image+Available' }}"
+                                alt="{{ $item->title }}"
                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         </div>
 
@@ -210,23 +210,23 @@
                         <div class="p-6 sm:p-8 flex flex-col flex-grow gap-2 sm:gap-3">
                             {{-- tanggal rilis --}}
                             <span class="text-xs sm:text-sm font-medium text-gray-500">
-                                01 Januari 2025
+                                {{ \Carbon\Carbon::parse($item->published_at)->translatedFormat('d F Y') }}
                             </span>
 
                             {{-- judul berita --}}
                             <h3
                                 class="text-base sm:text-lg font-bold text-gray-900 leading-snug group-hover:text-[#047857] transition-colors">
-                                Inovasi Pupuk BHOS Teknologi Dorong Transformasi Pertanian Modern
+                                {{ $item->title }}
                             </h3>
                         </div>
-                    </div>
-                @endfor
+                    </a>
+                @endforeach
 
             </div>
 
             {{-- tombol view more --}}
             <div class="mt-8 lg:mt-14 flex justify-center">
-                <a href="#"
+                <a href="{{ route('news.index') }}"
                     class="inline-flex items-center justify-center rounded-lg bg-[#EA580C] px-8 py-4 text-sm sm:text-base font-semibold text-white shadow-md transition hover:bg-[#c24106] focus:outline-none focus:ring-2 focus:ring-[#EA580C] focus:ring-offset-2 focus:ring-offset-[#EEFBF5]">
                     View More
                 </a>

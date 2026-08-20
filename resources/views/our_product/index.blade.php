@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Section Produk Unggulan --}}
-    <div class="w-full bg-[#ECFDF5] py-15 lg:py-20 overflow-hidden">
+    <div class="w-full bg-[#ECFDF5] py-24 lg:py-20 overflow-hidden">
         <section class="mx-auto max-w-screen-xl px-0 lg:px-8">
 
             {{-- Header Title --}}
@@ -24,10 +24,10 @@
                     <div
                         class="shrink-0 w-[75%] sm:w-[45%] lg:w-auto snap-center lg:snap-align-none group bg-white border border-gray-200 rounded-2xl sm:rounded-3xl shadow-sm hover:shadow-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 focus-within:ring-2 focus-within:ring-[#047857]">
 
-                        <a href="{{ route('our_product.product-details', $product->id) }}"
+                        <a href="{{ route('our_product.product-details', $product->slug) }}"
                             class="block w-full aspect-[4/3] lg:aspect-square bg-gray-50 relative overflow-hidden focus:outline-none">
 
-                            <img src="{{ $product->getFirstMediaUrl('product_images', 'preview') ?: asset('images/default-placeholder.jpg') }}"
+                            <img src="{{ $product->getFirstMediaUrl('product_images', 'preview') ?: 'https://placehold.co/800x800/ECFDF5/047857?text=No+Image+Available' }}"
                                 alt="{{ $product->name }}"
                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                         </a>
@@ -35,7 +35,7 @@
                         {{-- Konten Text --}}
                         <div class="p-4 sm:p-5 flex flex-col flex-grow justify-between">
 
-                            <a href="{{ route('our_product.product-details', $product->id) }}"
+                            <a href="{{ route('our_product.product-details', $product->slug) }}"
                                 class="focus:outline-none hover:text-[#047857] transition-colors">
                                 <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2 line-clamp-2">
                                     {{ $product->name }}
@@ -43,7 +43,7 @@
                             </a>
 
                             <div class="mt-2 sm:mt-3">
-                                <a href="{{ route('our_product.product-details', $product->id) }}"
+                                <a href="{{ route('our_product.product-details', $product->slug) }}"
                                     class="inline-flex items-center py-2 text-sm font-bold text-[#EA580C] hover:text-[#C2410C] transition-colors focus:outline-none">
                                     Baca Selengkapnya
                                     <svg class="w-4 h-4 ml-1.5 transform group-hover:translate-x-1 transition-transform"
