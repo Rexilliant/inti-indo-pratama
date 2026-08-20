@@ -18,4 +18,12 @@ class Faq extends Model
     {
         return LogOptions::defaults()->logFillable();
     }
+
+    public static function getStatus()
+    {
+        return [
+            'published' => 'Publikasikan',
+            'not_published' => 'Tidak Publikasikan',
+        ];
+    }
 }

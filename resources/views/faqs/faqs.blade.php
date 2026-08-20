@@ -18,22 +18,29 @@
             {{-- FAQ Container sekarang menggunakan lebar penuh section --}}
             <div class="space-y-4">
 
-                @foreach ($faqs as $faq)
-                <details
-                    class="group bg-white border border-gray-200 rounded-xl p-2 transition-all duration-300 open:shadow-lg">
-                    <summary
-                        class="flex items-center justify-between font-semibold text-gray-800 cursor-pointer p-4 select-none">
-                        <span>{{ $faq->question }}</span>
-                        <svg class="w-5 h-5 text-[#EA580C] transition-transform group-open:rotate-180"
-                            fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                        </svg>
-                    </summary>
-                    <div class="px-4 pb-4 text-sm sm:text-base text-gray-600 leading-relaxed">
-                        {{ $faq->answer }}
-                    </div>
-                </details>
+                @php
+                    // Jika ada variabel $limit, ambil 5, jika tidak ada, ambil semua
+                    $displayFaqs = isset($limit) ? $faqs->take($limit) : $faqs;
+                @endphp
+
+                {{-- @foreach ($faqs as $faq) --}}
+                @foreach ($displayFaqs as $faq)
+                    <details
+                        class="group bg-white border border-gray-200 rounded-xl p-2 transition-all duration-300 open:shadow-lg">
+                        <summary
+                            class="flex items-center justify-between font-semibold text-gray-800 cursor-pointer p-4 select-none">
+                            <span>{{ $faq->question }}</span>
+                            <svg class="w-5 h-5 text-[#EA580C] transition-transform group-open:rotate-180"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                            </svg>
+                        </summary>
+                        
+                        <div class="px-4 pb-4 text-sm sm:text-base text-gray-600 leading-relaxed">
+                            {!! nl2br(e($faq->answer)) !!}
+                        </div>
+                    </details>
                 @endforeach
 
             </div>

@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\News;
 use App\Models\CompanyLicense;
 use App\Models\NewsCategory;
+use App\Models\Faq;
 
 class PageController extends Controller
 {
@@ -34,8 +35,8 @@ class PageController extends Controller
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('title', 'like', '%' . $request->search . '%')
-                  ->orWhere('content', 'like', '%' . $request->search . '%')
-                  ->orWhere('hook', 'like', '%' . $request->search . '%');
+                    ->orWhere('content', 'like', '%' . $request->search . '%')
+                    ->orWhere('hook', 'like', '%' . $request->search . '%');
             });
         }
 

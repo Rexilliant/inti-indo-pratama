@@ -72,6 +72,7 @@
         </section>
     </div>
 
-    @include('faqs.faqs')
+    {{-- @include('faqs.faqs') --}}
+    @include('faqs.faqs', ['limit' => 4])
     @include('testimoni.index')
 @endsection
