@@ -1,5 +1,11 @@
 @extends('layout.master')
 
+@section('title', 'Tentang Kami - PT Grace Indo Pratama | BHOS Teknologi')
+@section('meta_description', 'Kenali PT Grace Indo Pratama, perusahaan di balik BHOS Teknologi yang berdedikasi mengembangkan pupuk nano inovatif untuk pertanian masa depan Indonesia.')
+@section('meta_keywords', 'tentang BHOS Teknologi, PT Grace Indo Pratama, profil perusahaan, visi misi, pupuk nano Indonesia, pertanian berkelanjutan')
+@section('og_title', 'Tentang Kami - PT Grace Indo Pratama | BHOS Teknologi')
+@section('og_description', 'Kenali PT Grace Indo Pratama, perusahaan di balik BHOS Teknologi yang berdedikasi mengembangkan pupuk nano inovatif untuk pertanian masa depan Indonesia.')
+
 @section('content')
     {{-- hero banner (mobile + ipad aman) --}}
     <div class="relative flex min-h-[500px] w-full items-center bg-gray-900 bg-cover bg-left bg-no-repeat md:min-h-[700px]"

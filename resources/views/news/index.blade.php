@@ -1,5 +1,11 @@
 @extends('layout.master')
 
+@section('title', 'Berita & Update Terbaru | BHOS Teknologi')
+@section('meta_description', 'Ikuti berita dan update terbaru seputar inovasi produk, kegiatan lapangan, kolaborasi, dan komitmen BHOS Teknologi dalam mendukung pertanian yang lebih produktif.')
+@section('meta_keywords', 'berita BHOS Teknologi, update pertanian, inovasi pupuk nano, berita pertanian Indonesia, kegiatan lapangan')
+@section('og_title', 'Berita & Update Terbaru | BHOS Teknologi')
+@section('og_description', 'Ikuti berita dan update terbaru seputar inovasi produk, kegiatan lapangan, dan komitmen BHOS Teknologi dalam mendukung pertanian produktif.')
+
 @section('content')
     {{-- hero banner (mobile + ipad aman) --}}
     <div class="relative flex min-h-[500px] w-full items-center bg-[#ECFDF5] bg-cover bg-left bg-no-repeat md:min-h-[700px]"

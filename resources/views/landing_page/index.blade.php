@@ -1,5 +1,11 @@
 @extends('layout.master')
 
+@section('title', 'BHOS Teknologi - Revolusi Pupuk Nano untuk Hasil Panen Maksimal')
+@section('meta_description', 'BHOS Teknologi oleh PT Grace Indo Pratama menghadirkan revolusi pupuk nano untuk meningkatkan penyerapan nutrisi tanaman, membantu pertumbuhan lebih sehat, cepat, dan produktif.')
+@section('meta_keywords', 'pupuk nano, BHOS Teknologi, revolusi pertanian, pupuk nano Indonesia, hasil panen maksimal, nutrisi tanaman, PT Grace Indo Pratama')
+@section('og_title', 'BHOS Teknologi - Revolusi Pupuk Nano untuk Hasil Panen Maksimal')
+@section('og_description', 'Teknologi nano terbaru yang meningkatkan penyerapan nutrisi secara signifikan, membantu tanaman tumbuh lebih sehat, lebih cepat, dan lebih produktif.')
+
 @section('content')
     {{-- Tambahkan style ini di file CSS utamamu atau letakkan di dalam block @push('styles') --}}
     <style>

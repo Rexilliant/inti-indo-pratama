@@ -1,5 +1,11 @@
 @extends('layout.master')
 
+@section('title', 'Produk Unggulan Kami | BHOS Teknologi')
+@section('meta_description', 'Jelajahi produk unggulan BHOS Teknologi - solusi pupuk berbasis teknologi nano yang dirancang untuk berbagai jenis tanaman dan kebutuhan pertanian modern.')
+@section('meta_keywords', 'produk BHOS Teknologi, pupuk nano, produk pupuk nano, pupuk pertanian modern, solusi nutrisi tanaman')
+@section('og_title', 'Produk Unggulan Kami | BHOS Teknologi')
+@section('og_description', 'Jelajahi produk unggulan BHOS Teknologi - solusi pupuk berbasis teknologi nano untuk pertanian modern.')
+
 @section('content')
     {{-- Section Produk Unggulan --}}
     <div class="w-full bg-[#ECFDF5] py-24 lg:py-20 overflow-hidden">
@@ -14,6 +20,67 @@
                     Kami menghadirkan berbagai solusi pupuk berbasis teknologi Nano. <br class="hidden md:block">
                     Dirancang khusus untuk berbagai jenis tanaman dan kebutuhan pertanian modern.
                 </p>
+            </div>
+
+            {{-- Search Bar --}}
+            <div class="mb-8 max-w-2xl mx-auto px-4 sm:px-6 lg:px-0">
+                <form id="product-search-form" action="{{ route('our_product.index') }}" method="GET">
+                    <div class="relative">
+                        {{-- Search Icon --}}
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+
+                        {{-- Input --}}
+                        <input
+                            type="search"
+                            id="product-search-input"
+                            name="search"
+                            value="{{ request('search') }}"
+                            placeholder="Cari produk..."
+                            autocomplete="off"
+                            class="w-full pl-12 pr-12 py-3.5 bg-white border border-gray-200 rounded-xl text-gray-800 text-sm sm:text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent shadow-sm transition-all duration-300"
+                        />
+
+                        {{-- Clear Button (visible when search has value) --}}
+                        @if(request('search'))
+                            <a href="{{ route('our_product.index') }}"
+                                class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors duration-200">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </a>
+                        @endif
+                    </div>
+                </form>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var input = document.getElementById('product-search-input');
+                        var form = document.getElementById('product-search-form');
+                        var timer;
+
+                        if (input && form) {
+                            input.addEventListener('input', function () {
+                                clearTimeout(timer);
+                                timer = setTimeout(function () {
+                                    form.submit();
+                                }, 300);
+                            });
+                        }
+                    });
+                </script>
+
+                {{-- Search result info --}}
+                @if(request('search'))
+                    <p class="text-xs text-gray-500 mt-2 pl-1">
+                        {{ $products->total() }} produk ditemukan untuk "<span class="font-semibold">{{ request('search') }}</span>"
+                    </p>
+                @endif
             </div>
 
             {{-- Container Produk --}}

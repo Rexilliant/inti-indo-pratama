@@ -7,9 +7,18 @@ use Illuminate\Http\Request;
 
 class FrontProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::latest()->paginate(8);
+        $query = Product::query();
+
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%')
+                    ->orWhere('description', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        $products = $query->latest()->paginate(8)->appends($request->all());
         return view('our_product.index', compact('products'));
     }
 

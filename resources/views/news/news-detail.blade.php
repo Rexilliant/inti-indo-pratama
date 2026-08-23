@@ -1,5 +1,13 @@
 @extends('layout.master')
 
+@section('title', $news->title . ' | BHOS Teknologi')
+@section('meta_description', Str::limit(strip_tags($news->content), 160))
+@section('meta_keywords', 'berita pertanian, ' . $news->title . ', BHOS Teknologi, pupuk nano')
+@section('og_type', 'article')
+@section('og_title', $news->title)
+@section('og_description', $news->hook ?? Str::limit(strip_tags($news->content), 160))
+@section('og_image', $news->getFirstMediaUrl('news-thumbnail') ?: asset('assets_img/hero.png'))
+
 @section('content')
     {{-- Section Detail Artikel --}}
     <div class="w-full bg-[#ECFDF5]  py-20 md:py-20 min-h-screen">

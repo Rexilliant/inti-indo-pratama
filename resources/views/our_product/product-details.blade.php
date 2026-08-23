@@ -1,5 +1,13 @@
 @extends('layout.master')
 
+@section('title', $product->name . ' | BHOS Teknologi')
+@section('meta_description', Str::limit(strip_tags($product->description), 160))
+@section('meta_keywords', $product->name . ', pupuk nano, BHOS Teknologi, produk pertanian, nutrisi tanaman')
+@section('og_type', 'product')
+@section('og_title', $product->name . ' - Produk BHOS Teknologi')
+@section('og_description', Str::limit(strip_tags($product->description), 160))
+@section('og_image', $product->getFirstMediaUrl('product_images', 'preview') ?: asset('assets_img/hero.png'))
+
 @section('addCss')
     <style>
         .tinymce-content { width: 100%; color: #374151; font-size: 1rem; line-height: 1.6; }

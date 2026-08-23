@@ -1,5 +1,11 @@
 @extends('layout.master')
 
+@section('title', 'Feedback - Berikan Masukan Anda | BHOS Teknologi')
+@section('meta_description', 'Berikan feedback dan masukan Anda tentang produk BHOS Teknologi. Pengalaman Anda membantu kami meningkatkan kualitas produk dan layanan.')
+@section('meta_keywords', 'feedback BHOS Teknologi, masukan pelanggan, review pupuk nano, layanan pelanggan, PT Grace Indo Pratama')
+@section('og_title', 'Feedback - Berikan Masukan Anda | BHOS Teknologi')
+@section('og_description', 'Berikan feedback dan masukan Anda tentang produk BHOS Teknologi untuk meningkatkan kualitas produk dan layanan kami.')
+
 @section('content')
     {{-- Section Feedback Form --}}
     <div class="w-full bg-[#ECFDF5] py-10 lg:py-20">
