@@ -77,10 +77,16 @@
 
         {{-- HOOK --}}
         <div class="bg-gray-200/80 p-4 sm:p-5 rounded-xl mb-5">
-            <label class="block text-sm font-bold mb-2">Hook</label>
+            <div class="flex justify-between items-end mb-2">
+                <label class="block text-sm font-bold">Hook (Ringkasan)</label>
+                <span id="hook-counter"
+                    class="text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded-md border border-gray-300">
+                    0 / 500
+                </span>
+            </div>
 
-            <textarea name="hook"
-                class="w-full border rounded px-4 py-3
+            <textarea id="hook" name="hook" maxlength="500" oninput="updateCharCount()"
+                class="w-full border rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#275931]
                   {{ $errors->has('hook') ? 'border-red-500' : 'border-gray-300' }}">{{ old('hook', $news->hook) }}</textarea>
 
             @error('hook')
@@ -200,6 +206,31 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function updateCharCount() {
+            const textarea = document.getElementById('hook');
+            const counter = document.getElementById('hook-counter');
+
+            if (textarea && counter) {
+                const currentLength = textarea.value.length;
+                counter.textContent = currentLength + ' / 500';
+
+                // Ubah warna jika karakter mencapai batas maksimal
+                if (currentLength >= 500) {
+                    counter.classList.replace('text-gray-500', 'text-red-600');
+                    counter.classList.replace('bg-gray-100', 'bg-red-100');
+                    counter.classList.replace('border-gray-300', 'border-red-300');
+                } else {
+                    counter.classList.replace('text-red-600', 'text-gray-500');
+                    counter.classList.replace('bg-red-100', 'bg-gray-100');
+                    counter.classList.replace('border-red-300', 'border-gray-300');
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCharCount);
+    </script>
 
     @if (session('success'))
         <script>

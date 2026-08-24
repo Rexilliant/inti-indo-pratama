@@ -102,6 +102,7 @@
                             <th scope="col" class="px-6 py-4 font-extrabold text-left w-48">Tanggal</th>
                             <th scope="col" class="px-6 py-4 font-extrabold text-left">Nama Lengkap</th>
                             <th scope="col" class="px-6 py-4 font-extrabold text-left">Provinsi</th>
+                            <th scope="col" class="px-6 py-4 font-extrabold text-center">Status</th>
                             <th scope="col" class="px-6 py-4 font-extrabold text-center w-48">Aksi</th>
                         </tr>
                     </thead>
@@ -113,6 +114,19 @@
                                 <td class="px-6 py-4">{{ $data->created_at->format('d/m/Y') }}</td>
                                 <td class="px-6 py-4 font-medium whitespace-normal min-w-[250px]">{{ $data->name }}</td>
                                 <td class="px-6 py-4 whitespace-normal">{{ $data->province }}</td>
+                                <td class="px-6 py-4 text-center">
+                                    @if ($data->status == 'published')
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">
+                                            Published
+                                        </span>
+                                    @else
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold text-gray-800 bg-gray-300 rounded-full">
+                                            Not Published
+                                        </span>
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4 text-center">
                                     <a href="{{ route('admin.testimonial.edit', $data->id) }}"
                                         class="text-blue-600 hover:underline">Sunting</a>

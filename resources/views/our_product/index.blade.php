@@ -1,10 +1,16 @@
 @extends('layout.master')
 
 @section('title', 'Produk Unggulan Kami | BHOS Teknologi')
-@section('meta_description', 'Jelajahi produk unggulan BHOS Teknologi - solusi pupuk berbasis teknologi nano yang dirancang untuk berbagai jenis tanaman dan kebutuhan pertanian modern.')
-@section('meta_keywords', 'produk BHOS Teknologi, pupuk nano, produk pupuk nano, pupuk pertanian modern, solusi nutrisi tanaman')
+@section('meta_description',
+    'Jelajahi produk unggulan BHOS Teknologi - solusi pupuk berbasis teknologi nano yang
+    dirancang untuk berbagai jenis tanaman dan kebutuhan pertanian modern.')
+@section('meta_keywords',
+    'produk BHOS Teknologi, pupuk nano, produk pupuk nano, pupuk pertanian modern, solusi nutrisi
+    tanaman')
 @section('og_title', 'Produk Unggulan Kami | BHOS Teknologi')
-@section('og_description', 'Jelajahi produk unggulan BHOS Teknologi - solusi pupuk berbasis teknologi nano untuk pertanian modern.')
+@section('og_description',
+    'Jelajahi produk unggulan BHOS Teknologi - solusi pupuk berbasis teknologi nano untuk
+    pertanian modern.')
 
 @section('content')
     {{-- Section Produk Unggulan --}}
@@ -12,7 +18,8 @@
         <section class="mx-auto max-w-screen-xl px-0 lg:px-8">
 
             {{-- Header Title --}}
-            <div class="pt-20 lg:pt-8 text-center mb-10 md:mb-14 flex flex-col items-center gap-3 md:gap-4 px-4 sm:px-6 lg:px-0">
+            <div
+                class="pt-20 lg:pt-8 text-center mb-10 md:mb-14 flex flex-col items-center gap-3 md:gap-4 px-4 sm:px-6 lg:px-0">
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight ">
                     <span class="text-[#047857]">Produk Unggulan</span> Kami
                 </h2>
@@ -35,18 +42,12 @@
                         </div>
 
                         {{-- Input --}}
-                        <input
-                            type="search"
-                            id="product-search-input"
-                            name="search"
-                            value="{{ request('search') }}"
-                            placeholder="Cari produk..."
-                            autocomplete="off"
-                            class="w-full pl-12 pr-12 py-3.5 bg-white border border-gray-200 rounded-xl text-gray-800 text-sm sm:text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent shadow-sm transition-all duration-300"
-                        />
+                        <input type="search" id="product-search-input" name="search" value="{{ request('search') }}"
+                            placeholder="Cari produk..." autocomplete="off"
+                            class="w-full pl-12 pr-12 py-3.5 bg-white border border-gray-200 rounded-xl text-gray-800 text-sm sm:text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent shadow-sm transition-all duration-300" />
 
                         {{-- Clear Button (visible when search has value) --}}
-                        @if(request('search'))
+                        @if (request('search'))
                             <a href="{{ route('our_product.index') }}"
                                 class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors duration-200">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,26 +60,34 @@
                 </form>
 
                 <script>
-                    document.addEventListener('DOMContentLoaded', function () {
+                    document.addEventListener('DOMContentLoaded', function() {
                         var input = document.getElementById('product-search-input');
                         var form = document.getElementById('product-search-form');
                         var timer;
 
                         if (input && form) {
-                            input.addEventListener('input', function () {
+                            if (input.value) {
+                                input.focus();
+                                var val = input.value;
+                                input.value = '';
+                                input.value = val;
+                            }
+
+                            input.addEventListener('input', function() {
                                 clearTimeout(timer);
-                                timer = setTimeout(function () {
+                                timer = setTimeout(function() {
                                     form.submit();
-                                }, 300);
+                                }, 1500);
                             });
                         }
                     });
                 </script>
 
                 {{-- Search result info --}}
-                @if(request('search'))
+                @if (request('search'))
                     <p class="text-xs text-gray-500 mt-2 pl-1">
-                        {{ $products->total() }} produk ditemukan untuk "<span class="font-semibold">{{ request('search') }}</span>"
+                        {{ $products->total() }} produk ditemukan untuk "<span
+                            class="font-semibold">{{ request('search') }}</span>"
                     </p>
                 @endif
             </div>
