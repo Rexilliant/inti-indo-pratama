@@ -2,7 +2,58 @@
 
 @section('addCss')
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <style>
+        .filepond--root {
+            font-family: inherit;
+            margin-bottom: 0;
+            min-height: 250px !important;
+        }
+
+        .filepond--drop-label {
+            background-color: transparent !important;
+            cursor: pointer;
+            min-height: 250px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 1.5rem !important;
+        }
+
+        .filepond--panel-root {
+            background-color: #ffffff !important;
+            border: 2px dashed #d1d5db !important;
+            border-radius: 1rem !important;
+            transition: all 0.3s ease;
+        }
+
+        .filepond--root:hover .filepond--panel-root {
+            border-color: #3b82f6 !important;
+            background-color: #eff6ff !important;
+        }
+
+        .filepond--label-action {
+            text-decoration: none;
+            cursor: pointer;
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .filepond--drop-label>div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* CSS Tambahan untuk membantu Scrollbar TinyMCE terlihat lebih jelas di beberapa browser mobile */
+        .tox-toolbar-overflown {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+    </style>
 @endsection
 
 @section('open-news', 'open')
@@ -133,17 +184,25 @@
 
 @section('addJs')
 
-    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+   <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
     <script>
-        FilePond.registerPlugin(FilePondPluginImagePreview);
+        // Daftarkan plugin validasi tipe file bersama image preview
+        FilePond.registerPlugin(
+            FilePondPluginImagePreview,
+            FilePondPluginFileValidateType
+        );
 
         FilePond.create(document.querySelector('.filepond'), {
             allowMultiple: false,
             maxFiles: 1,
             allowImagePreview: true,
-            imagePreviewHeight: 200,
+            imagePreviewHeight: 220,
+            // Tipe file yang diizinkan (MIME types)
+            acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'],
+            labelFileTypeNotAllowed: 'Format file tidak valid',
+            fileValidateTypeLabelExpectedTypes: 'Hanya menerima: {allButLastType} atau {lastType}'
         });
 
         FilePond.setOptions({
