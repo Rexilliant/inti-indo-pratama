@@ -1,10 +1,13 @@
 @extends('layout.master')
 
 @section('title', 'BHOS Teknologi - Revolusi Pupuk Nano untuk Hasil Panen Maksimal')
-@section('meta_description', 'BHOS Teknologi oleh PT Grace Indo Pratama menghadirkan revolusi pupuk nano untuk meningkatkan penyerapan nutrisi tanaman, membantu pertumbuhan lebih sehat, cepat, dan produktif.')
-@section('meta_keywords', 'pupuk nano, BHOS Teknologi, revolusi pertanian, pupuk nano Indonesia, hasil panen maksimal, nutrisi tanaman, PT Grace Indo Pratama')
+@section('meta_description', 'BHOS Teknologi oleh PT Grace Indo Pratama menghadirkan revolusi pupuk nano untuk
+    meningkatkan penyerapan nutrisi tanaman, membantu pertumbuhan lebih sehat, cepat, dan produktif.')
+@section('meta_keywords', 'pupuk nano, BHOS Teknologi, revolusi pertanian, pupuk nano Indonesia, hasil panen maksimal,
+    nutrisi tanaman, PT Grace Indo Pratama')
 @section('og_title', 'BHOS Teknologi - Revolusi Pupuk Nano untuk Hasil Panen Maksimal')
-@section('og_description', 'Teknologi nano terbaru yang meningkatkan penyerapan nutrisi secara signifikan, membantu tanaman tumbuh lebih sehat, lebih cepat, dan lebih produktif.')
+@section('og_description', 'Teknologi nano terbaru yang meningkatkan penyerapan nutrisi secara signifikan, membantu
+    tanaman tumbuh lebih sehat, lebih cepat, dan lebih produktif.')
 
 @section('content')
     {{-- Tambahkan style ini di file CSS utamamu atau letakkan di dalam block @push('styles') --}}
@@ -182,7 +185,7 @@
         <section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 overflow-hidden">
 
             {{-- header section --}}
-            <div class="text-center mb-10 sm:mb-14">
+            <div class="text-center mb-10 sm:mb-14 pt-10">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl mb-4">
                     <span class="font-bold text-[#047857]">Berita & Update</span>
                     <span class="font-bold text-black">Terbaru BHOS Teknologi</span>

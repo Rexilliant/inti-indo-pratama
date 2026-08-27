@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->string('hook');
+            $table->text('hook');
             $table->text('content');
             $table->dateTime('published_at');
             $table->timestamps();

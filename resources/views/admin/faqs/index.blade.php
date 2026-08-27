@@ -15,7 +15,7 @@
 
     {{-- Top Bar / Filter Form --}}
     <section class="bg-white p-4 sm:p-5 shadow border border-gray-300 rounded-lg mb-5">
-        <form action="{{ route( 'admin.faqs.index') }}" method="GET" class="mb-2 sm:mb-4">
+        <form action="{{ route('admin.faqs.index') }}" method="GET" class="mb-2 sm:mb-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
 
                 {{-- Search Pertanyaan --}}
@@ -100,6 +100,7 @@
                         <tr class="[&>th]:border-b [&>th]:border-gray-500">
                             <th scope="col" class="px-6 py-4 font-extrabold text-left w-48">Tanggal</th>
                             <th scope="col" class="px-6 py-4 font-extrabold text-left">Pertanyaan</th>
+                            <th scope="col" class="px-6 py-4 font-extrabold text-center">Status</th>
                             <th scope="col" class="px-6 py-4 font-extrabold text-center w-48">Aksi</th>
                         </tr>
                     </thead>
@@ -110,6 +111,19 @@
                             <tr class="[&>td]:border-b [&>td]:border-gray-400 hover:bg-gray-100">
                                 <td class="px-6 py-4">{{ $faq->created_at->format('d/m/Y') }}</td>
                                 <td class="px-6 py-4 font-medium whitespace-normal min-w-[250px]">{{ $faq->question }}</td>
+                                <td class="px-6 py-4 text-center">
+                                    @if ($faq->status == 'published')
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">
+                                            Published
+                                        </span>
+                                    @else
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold text-gray-800 bg-gray-300 rounded-full">
+                                            Not Published
+                                        </span>
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4 text-center">
                                     <a href="{{ route('admin.faqs.edit', $faq->id) }}"
                                         class="text-blue-600 hover:underline">Sunting</a>
