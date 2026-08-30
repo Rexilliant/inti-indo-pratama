@@ -2,6 +2,7 @@
 
 @section('open-feedback', 'open')
 @section('menu-feedback', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
+@section('title', 'Feedback')
 
 @section('content')
 

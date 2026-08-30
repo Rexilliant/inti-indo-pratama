@@ -3,6 +3,7 @@
 {{-- sidebar active (sesuaikan menu kamu) --}}
 @section('open-licensing', 'open')
 @section('menu-licensing', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
+@section('title', 'Company Licensing')
 
 @section('content')
 

@@ -2,6 +2,7 @@
 
 @section('open-log-activity', 'open')
 @section('menu-log-activity', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
+@section('title', 'Log Activity')
 
 @section('content')
 

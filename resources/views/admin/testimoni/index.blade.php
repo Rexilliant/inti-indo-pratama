@@ -3,6 +3,7 @@
 {{-- sidebar active (sesuaikan menu kamu) --}}
 @section('open-testimoni', 'open')
 @section('menu-testimoni', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
+@section('title', 'Testimonials')
 
 @section('content')
 

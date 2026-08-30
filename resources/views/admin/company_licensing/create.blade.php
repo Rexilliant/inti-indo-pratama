@@ -1,6 +1,7 @@
 @extends('admin.layout.master')
 @section('open-licensing', 'open')
 @section('menu-licensing', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
+@section('title', 'Create New Licensing')
 
 @section('addCss')
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />

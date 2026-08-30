@@ -1,4 +1,5 @@
 @extends('admin.layout.master')
+@section('title', 'Add New Testimonials')
 
 {{-- sidebar active (sesuaikan menu kamu) --}}
 @section('addCss')
