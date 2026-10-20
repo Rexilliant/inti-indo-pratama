@@ -1,4 +1,5 @@
 @extends('admin.layout.master')
+@section('title', 'Edit News')
 
 @section('addCss')
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
@@ -132,11 +133,11 @@
                 <label class="block text-sm font-bold">Hook (Ringkasan)</label>
                 <span id="hook-counter"
                     class="text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded-md border border-gray-300">
-                    0 / 500
+                    0 / 160
                 </span>
             </div>
 
-            <textarea id="hook" name="hook" maxlength="500" oninput="updateCharCount()"
+            <textarea id="hook" name="hook" maxlength="160" oninput="updateCharCount()"
                 class="w-full border rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#275931]
                   {{ $errors->has('hook') ? 'border-red-500' : 'border-gray-300' }}">{{ old('hook', $news->hook) }}</textarea>
 
@@ -190,7 +191,7 @@
 
 @section('addJs')
 
-   <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
     <script>
@@ -273,10 +274,10 @@
 
             if (textarea && counter) {
                 const currentLength = textarea.value.length;
-                counter.textContent = currentLength + ' / 500';
+                counter.textContent = currentLength + ' / 160';
 
                 // Ubah warna jika karakter mencapai batas maksimal
-                if (currentLength >= 500) {
+                if (currentLength >= 160) {
                     counter.classList.replace('text-gray-500', 'text-red-600');
                     counter.classList.replace('bg-gray-100', 'bg-red-100');
                     counter.classList.replace('border-gray-300', 'border-red-300');

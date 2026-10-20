@@ -2,6 +2,7 @@
 
 @section('open-news', 'open')
 @section('menu-news-category', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
+@section('title', 'Edit News Category')
 
 @section('content')
     <section class="mb-6">

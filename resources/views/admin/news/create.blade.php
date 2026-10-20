@@ -1,4 +1,5 @@
 @extends('admin.layout.master')
+@section('title', 'Add News')
 
 @section('addCss')
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
@@ -138,12 +139,12 @@
                 <!-- Tempat angka counter muncul di kanan atas label -->
                 <span id="hook-counter"
                     class="text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded-md border border-gray-300">
-                    0 / 500
+                    0 / 160
                 </span>
             </div>
 
             <!-- Tambahkan id, maxlength, dan event oninput -->
-            <textarea id="hook" name="hook" maxlength="500" oninput="updateCharCount()"
+            <textarea id="hook" name="hook" maxlength="160" oninput="updateCharCount()"
                 class="w-full rounded-md border border-gray-300 px-4 py-3 text-sm focus:ring-2 focus:ring-[#275931] focus:outline-none bg-white shadow-sm">{{ old('hook') }}</textarea>
 
             @error('hook')
@@ -289,7 +290,7 @@
 
             if (textarea && counter) {
                 const currentLength = textarea.value.length;
-                counter.textContent = currentLength + ' / 500';
+                counter.textContent = currentLength + ' / 160';
 
                 if (currentLength >= 500) {
                     counter.classList.replace('text-gray-500', 'text-red-600');
