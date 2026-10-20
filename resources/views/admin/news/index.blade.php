@@ -3,6 +3,7 @@
 {{-- sidebar active (sesuaikan menu kamu) --}}
 @section('open-news', 'open')
 @section('menu-news', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
+@section('title', 'News')
 
 @section('content')
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 @include('layout.head')
 
 <body class="text-slate-700 font-plus-jakarta-sans md:flex bg-[#F8FAFC]">

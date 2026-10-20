@@ -2,6 +2,7 @@
 
 @section('open-product', 'open')
 @section('menu-product', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
+@section('title', 'Our Product')
 
 @section('content')
     <section class="mb-5">

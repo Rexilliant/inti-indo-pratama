@@ -2,6 +2,7 @@
 
 @section('open-error-log', 'open')
 @section('menu-error-log', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
+@section('title', 'Error Log')
 
 @section('content')
 

@@ -3,6 +3,7 @@
 {{-- Sidebar active --}}
 @section('open-product', 'open')
 @section('menu-product', 'bg-gradient-to-r from-[#53BF6A] to-[#275931] text-white')
+@section('title', 'Add New Our Product')
 
 @section('addCss')
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />

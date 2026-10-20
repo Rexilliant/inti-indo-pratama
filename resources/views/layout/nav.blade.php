@@ -3,7 +3,7 @@
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
             {{-- Logo & Nama Perusahaan --}}
-            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="{{ route('landing_page.index') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="{{ asset('assets_img/logo-2.png') }}" class="h-11" alt="Logo BHOS Teknologi" />
                 <span class="self-center text-xl text-slate-800 font-bold whitespace-nowrap hidden lg:block">
                     PT Grace Indo Pratama

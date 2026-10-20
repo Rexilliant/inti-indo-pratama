@@ -1,8 +1,14 @@
 @extends('layout.master')
 
+@section('title', 'Perizinan & Legalitas Usaha | BHOS Teknologi')
+@section('meta_description', 'PT Grace Indo Pratama beroperasi secara resmi dengan dokumen perizinan lengkap. Lihat legalitas, sertifikasi, dan komitmen transparansi kami.')
+@section('meta_keywords', 'perizinan BHOS Teknologi, legalitas perusahaan, dokumen resmi, PT Grace Indo Pratama, sertifikasi pupuk nano')
+@section('og_title', 'Perizinan & Legalitas Usaha | BHOS Teknologi')
+@section('og_description', 'PT Grace Indo Pratama beroperasi secara resmi dengan dokumen perizinan lengkap sesuai ketentuan berlaku.')
+
 @section('content')
     {{-- Section Hero: Perizinan & Legalitas Usaha --}}
-    <div class="relative flex min-h-[500px] w-full items-center bg-[#ECFDF5] bg-cover bg-left lg:bg-center bg-no-repeat md:min-h-[700px] object-right overflow-hidden"
+    <div class="pt-20 lg:pt-8 relative flex min-h-[500px] w-full items-center bg-[#ECFDF5] bg-cover bg-left lg:bg-center bg-no-repeat md:min-h-[700px] object-right overflow-hidden"
         style="background-image: url('{{ asset('assets_img/bg-licensing.png') }}');" aria-label="petani modern">
 
         <div
@@ -180,6 +186,7 @@
         </section>
     </div>
 
-    @include('faqs.faqs')
+    {{-- @include('faqs.faqs') --}}
+    @include('faqs.faqs', ['limit' => 4])
     @include('testimoni.index')
 @endsection

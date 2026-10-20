@@ -1,8 +1,60 @@
 @extends('admin.layout.master')
+@section('title', 'Add News')
 
 @section('addCss')
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <style>
+        .filepond--root {
+            font-family: inherit;
+            margin-bottom: 0;
+            min-height: 250px !important;
+        }
+
+        .filepond--drop-label {
+            background-color: transparent !important;
+            cursor: pointer;
+            min-height: 250px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 1.5rem !important;
+        }
+
+        .filepond--panel-root {
+            background-color: #ffffff !important;
+            border: 2px dashed #d1d5db !important;
+            border-radius: 1rem !important;
+            transition: all 0.3s ease;
+        }
+
+        .filepond--root:hover .filepond--panel-root {
+            border-color: #3b82f6 !important;
+            background-color: #eff6ff !important;
+        }
+
+        .filepond--label-action {
+            text-decoration: none;
+            cursor: pointer;
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .filepond--drop-label>div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* CSS Tambahan untuk membantu Scrollbar TinyMCE terlihat lebih jelas di beberapa browser mobile */
+        .tox-toolbar-overflown {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+    </style>
 @endsection
 
 @section('open-news', 'open')
@@ -80,11 +132,19 @@
         {{-- HOOK --}}
         <div class="bg-gray-200/80 p-4 sm:p-5 rounded-xl shadow-sm border border-gray-300 mb-5">
 
-            <label class="block text-sm sm:text-base font-bold text-gray-800 mb-3">
-                Hook
-            </label>
+            <div class="flex justify-between items-end mb-3">
+                <label class="block text-sm sm:text-base font-bold text-gray-800">
+                    Hook (Ringkasan)
+                </label>
+                <!-- Tempat angka counter muncul di kanan atas label -->
+                <span id="hook-counter"
+                    class="text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded-md border border-gray-300">
+                    0 / 160
+                </span>
+            </div>
 
-            <textarea name="hook"
+            <!-- Tambahkan id, maxlength, dan event oninput -->
+            <textarea id="hook" name="hook" maxlength="160" oninput="updateCharCount()"
                 class="w-full rounded-md border border-gray-300 px-4 py-3 text-sm focus:ring-2 focus:ring-[#275931] focus:outline-none bg-white shadow-sm">{{ old('hook') }}</textarea>
 
             @error('hook')
@@ -117,7 +177,7 @@
                 Upload Gambar
             </label>
 
-            <input type="file" class="filepond" name="image">
+            <input type="file" class="filepond" name="image" accept="image/png, image/jpeg, image/jpg, image/webp">
 
             @error('image')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -146,17 +206,25 @@
 
 @section('addJs')
 
-    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
     <script>
-        FilePond.registerPlugin(FilePondPluginImagePreview);
+        // Daftarkan plugin validasi tipe file bersama image preview
+        FilePond.registerPlugin(
+            FilePondPluginImagePreview,
+            FilePondPluginFileValidateType
+        );
 
         FilePond.create(document.querySelector('.filepond'), {
             allowMultiple: false,
             maxFiles: 1,
             allowImagePreview: true,
             imagePreviewHeight: 220,
+            // Tipe file yang diizinkan (MIME types)
+            acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'],
+            labelFileTypeNotAllowed: 'Format file tidak valid',
+            fileValidateTypeLabelExpectedTypes: 'Hanya menerima: {allButLastType} atau {lastType}'
         });
 
         FilePond.setOptions({
@@ -213,6 +281,31 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Script untuk menghitung karakter Hook -->
+    <script>
+        function updateCharCount() {
+            const textarea = document.getElementById('hook');
+            const counter = document.getElementById('hook-counter');
+
+            if (textarea && counter) {
+                const currentLength = textarea.value.length;
+                counter.textContent = currentLength + ' / 160';
+
+                if (currentLength >= 500) {
+                    counter.classList.replace('text-gray-500', 'text-red-600');
+                    counter.classList.replace('bg-gray-100', 'bg-red-100');
+                    counter.classList.replace('border-gray-300', 'border-red-300');
+                } else {
+                    counter.classList.replace('text-red-600', 'text-gray-500');
+                    counter.classList.replace('bg-red-100', 'bg-gray-100');
+                    counter.classList.replace('border-red-300', 'border-gray-300');
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCharCount);
+    </script>
 
     @if (session('success'))
         <script>

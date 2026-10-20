@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 // Client Side (Front Office)
 Route::controller(\App\Http\Controllers\PageController::class)->group(function () {
-    Route::get('/', 'welcome');
-    Route::get('/landing-page', 'landingPage')->name('landing_page.index');
+    // Route::get('/', 'welcome');
+    Route::get('/', 'landingPage')->name('landing_page.index');
     Route::get('/faqs', 'faqs')->name('faqs.index');
     Route::get('/news', 'news')->name('news.index');
     Route::get('/news/{slug}', 'newsDetail')->name('news.news-detail');

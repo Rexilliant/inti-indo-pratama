@@ -1,5 +1,11 @@
 @extends('layout.master')
 
+@section('title', 'Feedback - Berikan Masukan Anda | BHOS Teknologi')
+@section('meta_description', 'Berikan feedback dan masukan Anda tentang produk BHOS Teknologi. Pengalaman Anda membantu kami meningkatkan kualitas produk dan layanan.')
+@section('meta_keywords', 'feedback BHOS Teknologi, masukan pelanggan, review pupuk nano, layanan pelanggan, PT Grace Indo Pratama')
+@section('og_title', 'Feedback - Berikan Masukan Anda | BHOS Teknologi')
+@section('og_description', 'Berikan feedback dan masukan Anda tentang produk BHOS Teknologi untuk meningkatkan kualitas produk dan layanan kami.')
+
 @section('content')
     {{-- Section Feedback Form --}}
     <div class="w-full bg-[#ECFDF5] py-10 lg:py-20">
@@ -28,7 +34,9 @@
                         <input type="text" id="name" name="name" value="{{ old('name') }}"
                             class="bg-white border-0 text-gray-900 text-base rounded-2xl focus:ring-2 focus:ring-[#047857] block w-full p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all focus:outline-none"
                             required>
-                        @error('name') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+                        @error('name')
+                            <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     {{-- Input Email --}}
@@ -37,7 +45,9 @@
                         <input type="email" id="email" name="email" value="{{ old('email') }}"
                             class="bg-white border-0 text-gray-900 text-base rounded-2xl focus:ring-2 focus:ring-[#047857] block w-full p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all focus:outline-none"
                             required>
-                        @error('email') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+                        @error('email')
+                            <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
@@ -47,7 +57,9 @@
                     <input type="text" id="subject" name="subject" value="{{ old('subject') }}"
                         class="bg-white border-0 text-gray-900 text-base rounded-2xl focus:ring-2 focus:ring-[#047857] block w-full p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all focus:outline-none"
                         required>
-                    @error('subject') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+                    @error('subject')
+                        <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 {{-- Row 3: Message --}}
@@ -56,7 +68,9 @@
                     <textarea id="message" name="message" rows="6"
                         class="bg-white border-0 text-gray-900 text-base rounded-2xl focus:ring-2 focus:ring-[#047857] block w-full p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all focus:outline-none resize-y"
                         required>{{ old('message') }}</textarea>
-                    @error('message') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+                    @error('message')
+                        <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 {{-- Submit Button --}}
@@ -72,6 +86,7 @@
         </section>
     </div>
 
+    @include('faqs.faqs', ['limit' => 4])
     @include('testimoni.index')
 @endsection
 

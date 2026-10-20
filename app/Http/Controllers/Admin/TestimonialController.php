@@ -98,7 +98,7 @@ class TestimonialController extends Controller
             'city' => 'required',
             'country' => 'required',
             'comment' => 'required',
-            'image' => 'required',
+            // 'image' => 'required',
             'status' => 'required',
         ]);
 

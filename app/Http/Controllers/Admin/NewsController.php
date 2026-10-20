@@ -53,7 +53,7 @@ class NewsController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required',
-            'hook' => 'required|string|max:500',
+            'hook' => 'required|string|max:160',
             'published_at' => 'required|date',
             'category_id' => 'required|exists:news_categories,id',
             'draft_id' => 'nullable|integer',
@@ -102,7 +102,7 @@ class NewsController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required',
-            'hook' => 'required|string|max:500',
+            'hook' => 'required|string|max:160',
             'published_at' => 'required|date',
             'category_id' => 'required|exists:news_categories,id',
             'image' => 'nullable|image|max:2048',
